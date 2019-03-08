@@ -27,6 +27,7 @@ gem 'active_model_serializers', '~> 0.9.3'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
+gem 'active_storage_validations', '~> 0.6.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

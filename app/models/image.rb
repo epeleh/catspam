@@ -1,8 +1,15 @@
 # frozen_string_literal: true
 
 class Image < ApplicationRecord
+  include Rails.application.routes.url_helpers
+
   has_one_attached :file
   # has_many :posts
+
+  scope :active, -> { where(active: true) }
+  scope :inactive, -> { where(active: false) }
+  # scope :used, -> { joins(:posts).where('has one or more related posts') }
+  # scope :not_used, -> { joins(:posts).where('does not have one or more related posts) }
 
   before_save :set_filename
 
@@ -12,6 +19,15 @@ class Image < ApplicationRecord
 
   def filename
     file.filename
+  end
+
+  def url
+    url_for(file) if file.attached?
+  end
+
+  def used?
+    # posts.present?
+    false
   end
 
   private

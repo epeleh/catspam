@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       # resources :subscribers, only: %i[index show create update]
       # resources :images, only: %i[index show]
       # resources :images, only: %i[create update], constraints: { subdomain: 'admin' }
+      # post :invite, to: 'invite#create', constraints: { subdomain: 'admin' }
     end
   end
 

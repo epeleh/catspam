@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   belongs_to :image
 
   after_save :inactivate_image
-  # after_save :send
+  after_save :send_emails
 
   validates :message, length: { minimum: 2, maximum: 640 }, allow_blank: true
 
@@ -14,6 +14,7 @@ class Post < ApplicationRecord
     image.update(active: false)
   end
 
-  # def send
-  # end
+  def send_emails
+    Subscriber.active.each { |s| PostMailer.with(post: self, subscriber: s).daily_post.deliver_later }
+  end
 end

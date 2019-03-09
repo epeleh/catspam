@@ -1,8 +1,7 @@
 ## TODO:
- - Add PostModel (controller.. etc); and update ImageModel (associations)
- - Add SubscriberModel (controller.. etc); change SendPostJob 
+ - Add SubscriberModel (controller.. etc); change SendPostJob
  - Add VoteModel (controller.. etc)
- - Add SendPostJob/PostMailer + view, currently only for yourself (one email)
+ - Add SendPostJob/PostMailer + view
  - Add WeeklyReport Job/Mailer/View
  - Investigate about votes security
  - Add SubscribeController (page)

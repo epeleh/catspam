@@ -43,5 +43,31 @@ ActiveRecord::Schema.define(version: 2019_03_08_141908) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.bigint "image_id", null: false
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["image_id"], name: "index_posts_on_image_id"
+  end
+
+  create_table "subscribers", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "name"
+    t.boolean "active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.bigint "subscriber_id", null: false
+    t.bigint "post_id", null: false
+    t.integer "value", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_votes_on_post_id"
+    t.index ["subscriber_id"], name: "index_votes_on_subscriber_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
 end

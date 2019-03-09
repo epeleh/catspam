@@ -1,1 +1,10 @@
-%p hello world!
+- if @post.message
+  %p= @post.message
+
+%img{src: @post.image.url}
+
+.buttons
+  - (1..10).each do |i|
+    %button{id: "vote_#{i}"}
+
+= link_to 'Отписаться :(', '123'

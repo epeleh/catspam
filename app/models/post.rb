@@ -15,6 +15,6 @@ class Post < ApplicationRecord
   end
 
   def send_emails
-    Subscriber.active.each { |s| PostMailer.with(post: self, subscriber: s).daily_post.deliver_later }
+    Subscriber.active.each { |s| PostMailer.daily_post(self, s).deliver_later }
   end
 end

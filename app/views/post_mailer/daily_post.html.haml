@@ -1,7 +1,7 @@
 - if @post.message
   %p= @post.message
 
-%img{src: @post.image.url}
+= image_tag(attachments.first.url)
 
 .buttons
   - (1..10).each do |i|

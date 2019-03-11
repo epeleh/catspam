@@ -7,6 +7,7 @@ class PostsSendJob < ApplicationJob
   after_perform { self.class.set(WAITING).perform_later }
 
   def perform
+    return if [0, 6].include?(Time.now.utc.wday)
     Post.create(image: Image.active.where(darkness: current_darkness).sample)
   end
 

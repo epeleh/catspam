@@ -3,7 +3,7 @@
 class PostsSendJob < ApplicationJob
   queue_as :default
 
-  WAITING = { wait_until: 1.day.from_now.beginning_of_day.utc + 16.hours + rand(0...800).minutes }
+  WAITING = { wait_until: 1.day.from_now.beginning_of_day.utc + 16.hours + rand(0...600).minutes }.freeze
   after_perform { self.class.set(WAITING).perform_later }
 
   def perform

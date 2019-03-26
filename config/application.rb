@@ -32,6 +32,7 @@ module Catspam
 
     config.after_initialize do
       PostsSendJob.set(PostsSendJob::WAITING).perform_later
+      WeeklyReportSendJob.set(WeeklyReportSendJob::WAITING).perform_later
     end
   end
 end

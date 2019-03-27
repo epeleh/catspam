@@ -6,7 +6,7 @@ class Post < ApplicationRecord
   after_save :inactivate_image
   after_save :send_emails
 
-  validates :message, length: { minimum: 2, maximum: 640 }, allow_blank: true
+  validates :message, length: { in: 2..640 }, allow_nil: true
 
   private
 

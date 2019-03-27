@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   scope '/api', defaults: { format: :json } do
-    # resources :votes, only: %i[show create]
+    resources :votes, only: %i[create]
     resources :posts, only: %i[index show]
     resources :subscribers, only: %i[index show create update]
     resources :images, only: %i[index show]

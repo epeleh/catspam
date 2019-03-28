@@ -1,9 +1,6 @@
 ## TODO:
- - Add SubscriberModel (controller.. etc); change SendPostJob
- - Add VoteModel (controller.. etc)
- - Add SendPostJob/PostMailer + view
+ - Change view for PostMailer
  - Add WeeklyReport Job/Mailer/View
- - Investigate about votes security
  - Add SubscribeController (page)
  - Add InviteController (endpoint)
  - Add HomeController (page):

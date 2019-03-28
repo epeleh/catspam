@@ -21,7 +21,7 @@ class SubscribersController < ApplicationController
   def update
     @subscriber = Subscriber.find(params[:id])
     if @subscriber.update(subscriber_params)
-      render json: @subscriber, status: :ok
+      render json: @subscriber
     else
       render json: @subscriber.errors, status: :unprocessable_entity
     end

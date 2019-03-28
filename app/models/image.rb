@@ -14,7 +14,7 @@ class Image < ApplicationRecord
   before_save :set_filename
 
   validates :file, attached: true, content_type: %w(image/png image/jpg image/jpeg).freeze
-  validates :darkness, presence: true, inclusion: { in: (1..5) }
+  validates :darkness, presence: true, inclusion: { in: 1..5 }
   validates :active, inclusion: { in: [true, false] }
 
   def filename

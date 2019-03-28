@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def check_authorization!
+    head :unauthorized if @current_user.nil?
+  end
+
   def set_current_user
     @current_user = Subscriber.find_by_cache(params[:cache])
   end

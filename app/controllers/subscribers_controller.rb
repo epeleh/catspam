@@ -2,7 +2,7 @@
 
 class SubscribersController < ApplicationController
   def index
-    render json: Subscriber.all
+    render json: Subscriber.where(subscriber_params)
   end
 
   def show

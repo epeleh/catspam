@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SubscribersController < ApplicationController
+  before_action :check_authorization!, only: %i[update]
+
   def index
     render json: Subscriber.where(subscriber_params)
   end
@@ -20,6 +22,8 @@ class SubscribersController < ApplicationController
 
   def update
     @subscriber = Subscriber.find(params[:id])
+    return head :unauthorized if @current_user != @subscriber
+
     if @subscriber.update(subscriber_params)
       render json: @subscriber
     else

@@ -10,6 +10,6 @@ class PostMailer < ApplicationMailer
       content: @post.image.file.blob.download
     }
 
-    mail(to: subscriber.email, subject: 'CAT!!!')
+    mail(to: subscriber.email, subject: 'Daily cat')
   end
 end

@@ -1,10 +1,18 @@
+%iframe{width:'0', height:'0', border:'0', name:'dummy-frame', id:'dummy-frame'}
+
 - if @post.message
   %p= @post.message
 
 = image_tag(attachments.first.url)
 
-.buttons
-  - (1..10).each do |i|
-    %button{id: "vote_#{i}"}
+= form_tag("/api/votes?cache=#{@subscriber.cache}", method: 'post', target: 'dummy-frame') do
+  .buttons
+    - (1..10).each do |i|
+      = radio_button_tag(:value, i)
+  = submit_tag 'Отправить'
 
-= link_to 'Отписаться :(', '123'
+= image_tag('star_icon.png')
+
+= form_tag("/api/subscribers/#{@subscriber.id}?cache=#{@subscriber.cache}&active=false",
+  method: 'put', target: 'dummy-frame') do
+  = submit_tag 'Отписаться :('

@@ -17,6 +17,10 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+def protect_against_forgery?
+  false
+end
+
 module Catspam
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.

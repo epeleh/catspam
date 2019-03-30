@@ -1,6 +1,7 @@
 ## TODO:
  - Change view for PostMailer
  - Add WeeklyReport Job/Mailer/View
+ - Add WeeklyReportSnippet model for saving html
  - Add SubscribeController (page)
  - Add InviteController (endpoint)
  - Add HomeController (page):

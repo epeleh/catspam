@@ -1,7 +1,9 @@
 ## TODO:
  - Change view for PostMailer
+ - Add "view in browser" button & endpoint for PostMailer (posts_controller#show.html)
  - Add WeeklyReport Job/Mailer/View
  - Add WeeklyReportSnippet model for saving html
+ - Add "view in browser" button & endpoint for WeeklyReportMailer (weekly_report_controller#show.html)
  - Add SubscribeController (page)
  - Add InviteController (endpoint)
  - Add HomeController (page):

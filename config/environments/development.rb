@@ -1,6 +1,8 @@
-Rails.application.routes.default_url_options[:host] = 'localhost:3000'
+ENV['RAILS_HOST'] ||= 'localhost:3000'
+Rails.application.routes.default_url_options[:host] = ENV['RAILS_HOST']
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  config.action_controller.forgery_protection_origin_check = false
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -28,9 +30,13 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
+  config.action_controller.asset_host = "http://#{ENV['RAILS_HOST']}"
+
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = :local
 
+  config.action_mailer.asset_host = "http://#{ENV['RAILS_HOST']}"
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {

@@ -5,14 +5,14 @@
 
 = image_tag(attachments.first.url)
 
-= form_tag("/api/votes?cache=#{@subscriber.cache}", method: 'post', target: 'dummy-frame') do
+= form_tag("#{votes_url}?cache=#{@subscriber.cache}", method: 'post', target: 'dummy-frame') do
   .buttons
     - (1..10).each do |i|
       = radio_button_tag(:value, i)
   = submit_tag 'Отправить'
 
-= image_tag('star_icon.png')
+= image_tag asset_url('star_icon.png')
 
-= form_tag("/api/subscribers/#{@subscriber.id}?cache=#{@subscriber.cache}&active=false",
+= form_tag("#{subscriber_url(@subscriber)}?cache=#{@subscriber.cache}&active=false",
   method: 'put', target: 'dummy-frame') do
   = submit_tag 'Отписаться :('

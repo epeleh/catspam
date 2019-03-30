@@ -1,7 +1,15 @@
 # frozen_string_literal: true
 
 class VotesController < ApplicationController
-  before_action :check_authorization!, only: %i[create]
+  before_action :check_authorization!
+
+  def index
+    render json: Vote.where(subscriber: @current_user).where(vote_params)
+  end
+
+  def show
+    render json: Vote.where(subscriber: @current_user).find(params[:id])
+  end
 
   def create
     @previous_vote = Vote.find_by(post_id: params[:post_id], subscriber_id: @current_user.id)

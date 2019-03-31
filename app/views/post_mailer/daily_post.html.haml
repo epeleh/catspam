@@ -1,18 +1,22 @@
-%iframe{width:'0', height:'0', border:'0', name:'dummy-frame', id:'dummy-frame'}
+%iframe{ name:'dummy-frame' }
+.sheet
+  %header
+    - if @post.message
+      %p= @post.message
 
-- if @post.message
-  %p= @post.message
+  - article_background_color = @post.present? ? "##{(63.75 * (@post.image.darkness * 5 % 6 - 1)).to_i.to_s(16) * 3}".upcase : '#FFFFFF'
+  %article{style: "background-color: #{article_background_color};"}
+    = image_tag(attachments.first.url, class: 'cat-img')
 
-= image_tag(attachments.first.url)
+  %footer
+    = form_tag("#{votes_url}?cache=#{@subscriber.cache}", method: 'post', target: 'dummy-frame') do
+      .buttons
+        - (1..10).each do |i|
+          = label_tag do
+            = radio_button_tag(:value, i)
+            = image_tag asset_url('star_icon.png')
+      = submit_tag 'Отправить'
 
-= form_tag("#{votes_url}?cache=#{@subscriber.cache}", method: 'post', target: 'dummy-frame') do
-  .buttons
-    - (1..10).each do |i|
-      = radio_button_tag(:value, i)
-  = submit_tag 'Отправить'
-
-= image_tag asset_url('star_icon.png')
-
-= form_tag("#{subscriber_url(@subscriber)}?cache=#{@subscriber.cache}&active=false",
-  method: 'put', target: 'dummy-frame') do
-  = submit_tag 'Отписаться :('
+    = form_tag("#{subscriber_url(@subscriber)}?cache=#{@subscriber.cache}&active=false",
+      method: 'put', target: 'dummy-frame') do
+      = submit_tag 'Отписаться :('

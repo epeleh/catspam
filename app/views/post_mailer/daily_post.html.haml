@@ -9,7 +9,7 @@
     = image_tag(attachments.first.url, class: 'cat-img')
 
   %footer
-    = form_tag("#{votes_url}?cache=#{@subscriber.cache}", method: 'post', target: 'dummy-frame') do
+    = form_tag("#{votes_url}?authorization=#{@subscriber.authorization}", method: 'post', target: 'dummy-frame') do
       .buttons
         - (1..10).each do |i|
           = label_tag do
@@ -17,6 +17,6 @@
             = image_tag asset_url('star_icon.png')
       = submit_tag 'Отправить'
 
-    = form_tag("#{subscriber_url(@subscriber)}?cache=#{@subscriber.cache}&active=false",
+    = form_tag("#{subscriber_url(@subscriber)}?authorization=#{@subscriber.authorization}&active=false",
       method: 'put', target: 'dummy-frame') do
       = submit_tag 'Отписаться :('

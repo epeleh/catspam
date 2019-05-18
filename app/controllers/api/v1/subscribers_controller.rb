@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SubscribersController < ApplicationController
+class Api::V1::SubscribersController < ApplicationController
   before_action :check_authorization!, only: %i[update]
 
   def index

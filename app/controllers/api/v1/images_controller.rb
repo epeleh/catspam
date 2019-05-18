@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ImagesController < ApplicationController
+class Api::V1::ImagesController < ApplicationController
   def index
     render json: Image.where(image_params).send(
       { true => :used, false => :not_used, nil => :all }[params[:used]&.to_bool]

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class VotesController < ApplicationController
+class Api::V1::VotesController < ApplicationController
   before_action :check_authorization!
 
   def index

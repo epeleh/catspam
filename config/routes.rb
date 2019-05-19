@@ -12,10 +12,10 @@ Rails.application.routes.draw do
     end
   end
 
-  # resources :posts, only: %i[index show]
+  resources :posts, only: %i[index show]
   # resources :weekly_reports, only: %i[index show]
   # get 'subscribe', to: 'subscribe#index'
 
   # root 'home#index'
-  # get '*path', to: 'home#index'
+  # get '*path', to: redirect('')
 end

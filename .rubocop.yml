@@ -1,0 +1,28 @@
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
+    - 'bin/*'
+
+Metrics/AbcSize:
+  Max: 40
+
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+
+Metrics/BlockLength:
+  Max: 60
+
+Metrics/MethodLength:
+  Max: 40
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/MultilineBlockChain:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120

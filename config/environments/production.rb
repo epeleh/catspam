@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ENV['RAILS_HOST'] ||= 'localhost:3000'
 Rails.application.routes.default_url_options[:host] = ENV['RAILS_HOST']
 Rails.application.configure do
@@ -87,7 +89,7 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
     logger = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)

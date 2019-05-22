@@ -1,5 +1,14 @@
+[data-controller='posts'][data-action='show'].funny-mode
+  img:hover, label:hover, .message:hover
+    animation: rotation .03s linear infinite
+    transform: none !important
+    @keyframes rotation
+      100%
+        transform: rotate(360deg)
+
+
 [data-controller='posts'][data-action='show']
-  a img, [type='radio'] + label
+  a img, [type='radio'] + label, .message
     transition: transform .2s
 
     &:hover
@@ -31,6 +40,12 @@
     #post
       background: none
       min-width: 596px
+
+      .message
+        cursor: default
+        display: inline-block
+        font-size: 16px
+        margin: 2px 0
 
       .cat-img
         border-radius: 8px

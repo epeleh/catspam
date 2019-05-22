@@ -1,5 +1,4 @@
 ## TODO:
- - Convert authorization param into cookies
  - Change view for PostMailer
  - Add "view in browser" button & endpoint for PostMailer (posts_controller#show.html)
  - Add Report model

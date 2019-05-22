@@ -13,6 +13,14 @@ $.ajaxSetup {
 }
 
 $(document).on 'turbolinks:load', ->
+  params = new Map(window.location.search.substring(1).split('&').map((x) -> x.split('=')))
+  if params.has('Authorization')
+    Cookies.set('Authorization', params.get('Authorization'), {expires: 365})
+    params.delete('Authorization')
+    href = window.location.href.split('?')[0]
+    params_str = Array.from(params).map(([k, v]) -> "#{k}=#{v}").join('&')
+    window.location.href = "#{href}#{if params_str then '?' else ''}#{params_str}"
+
   window.page = {
     controller: $('body').data('controller'),
     action: $('body').data('action'),

@@ -2,6 +2,7 @@
 
 class Post < ApplicationRecord
   belongs_to :image
+  has_many :votes
 
   after_save :inactivate_image
   after_save :send_emails

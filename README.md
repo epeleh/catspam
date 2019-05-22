@@ -1,13 +1,10 @@
 ## TODO:
+ - Convert authorization param into cookies
  - Change view for PostMailer
  - Add "view in browser" button & endpoint for PostMailer (posts_controller#show.html)
+ - Add Report model
  - Add WeeklyReport Job/Mailer/View
- - Add WeeklyReportSnippet model for saving html
  - Add "view in browser" button & endpoint for WeeklyReportMailer (weekly_report_controller#show.html)
  - Add SubscribeController (page)
  - Add InviteController (endpoint)
- - Add HomeController (page):
-   - list of sent weekly reports
-   - list of users (subscribers)
-   - ability to send invite to friend
-   - top for all time
+ - Add HomeController (page)

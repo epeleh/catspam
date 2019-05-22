@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_current_user
-    token = request.headers['Authorization']
+    token = request.headers['Authorization'] || cookies['Authorization']
     email = JWT.decode(token, Rails.application.secret_key_base, true, algorithm: 'HS256').first['email']
     @current_user = Subscriber.find_by_email(email)
   rescue StandardError

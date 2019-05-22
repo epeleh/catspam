@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  def index; end
-
-  def show; end
+  def show
+    @post = Post.find_by_id(params[:id])
+    redirect_to root_url if @post.nil?
+  end
 end

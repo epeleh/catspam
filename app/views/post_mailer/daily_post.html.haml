@@ -11,7 +11,7 @@
   %footer
     = form_tag("#{api_v1_votes_url}?authorization=#{@subscriber.authorization}", method: 'post', target: 'dummy-frame') do
       .buttons
-        - (1..10).each do |i|
+        - (1..7).each do |i|
           = label_tag do
             = radio_button_tag(:value, i)
             = image_tag asset_url('star_icon.png')

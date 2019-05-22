@@ -1,7 +1,7 @@
 $(document).on "turbolinks:load", ->
-  return unless page.controller() == 'posts' && page.action() == 'index'
-  console.log('posts index')
+  return unless page.controller == 'posts' && page.action == 'show'
+  post = $('#post').data()
 
-$(document).on "turbolinks:load", ->
-  return unless page.controller() == 'posts' && page.action() == 'show'
-  console.log('posts show')
+  $('input[type="radio"]').click ->
+    url = $(this)[0].form.action
+    $.post(url, JSON.stringify {post_id: post.id, value: this.value})

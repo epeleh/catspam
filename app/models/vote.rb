@@ -4,6 +4,6 @@ class Vote < ApplicationRecord
   belongs_to :subscriber
   belongs_to :post
 
-  validates :value, presence: true, inclusion: { in: 1..10 }
+  validates :value, presence: true, inclusion: { in: 1..7 }
   validates :post_id, uniqueness: { scope: :subscriber_id }
 end

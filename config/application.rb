@@ -25,6 +25,7 @@ end
 
 module Catspam
   class Application < Rails::Application
+    config.railties_order = %i[all main_app]
     config.sass.preferred_syntax = :sass
 
     # Initialize configuration defaults for originally generated Rails version.

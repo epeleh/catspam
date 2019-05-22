@@ -1,0 +1,16 @@
+- dc = darkness_to_color(@post.image.darkness)
+- od = opposite_darkness(@post.image.darkness)
+- odc = darkness_to_color(od)
+
+%nav
+  = link_to image_tag(asset_url("arrow_#{od}.png")), root_url
+
+%main{style: "background-color: #{dc}"}
+  #post.centered{data: @post.attributes}
+    = image_tag(@post.image.url, class: 'cat-img', style: "box-shadow: 0 0 12px #{odc}")
+    - if @current_user
+      = form_tag(api_v1_votes_url, method: 'post', class: 'buttons') do
+        - last_vote = @post.votes.find_by(subscriber_id: @current_user.id)&.value || 0
+        - (1..7).each do |i|
+          = radio_button_tag(:value, i, i == last_vote, id: "radio_#{i}", class: "star-bgc-#{od}")
+          = label_tag "radio_#{i}"

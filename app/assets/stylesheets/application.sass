@@ -2,30 +2,24 @@
 //= require_tree .
 
 body
-  background-color: #ffffff
-  margin: 0
-  padding: 0
+  background-color: #fff
   height: 100%
-  width: 100%
+  margin: 0
   overflow: hidden
+  padding: 0
+  width: 100%
 
 body *
   outline: none
 
-body.funny-mode img:hover,
-body.funny-mode label:hover
+.funny-mode img:hover,
+.funny-mode label:hover
+  animation: rotation .03s linear infinite
   transform: none !important
-  animation: rotation 0.03s linear infinite
-  @-moz-keyframes rotation
-    100%
-      -moz-transform: rotate(360deg)
-  @-webkit-keyframes rotation
-    100%
-      -webkit-transform: rotate(360deg)
   @keyframes rotation
     100%
-      -webkit-transform: rotate(360deg)
       transform: rotate(360deg)
+
 
 .centered
   left: 50%

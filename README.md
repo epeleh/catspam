@@ -1,5 +1,4 @@
 ## TODO:
- - Change view of PostMailer
  - Change icons (border radius)
  - Add WeeklyReports:
     - Add report model
@@ -9,6 +8,7 @@
 
  - Make sure both jobs work properly
  - Add HomeController (page)
+ - Add message generator for posts
  - Add the ability to somehow change the username
  - Add SubscribeController (page)
  - Add InviteController (endpoint/page)

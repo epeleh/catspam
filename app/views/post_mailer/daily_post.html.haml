@@ -1,22 +1,17 @@
-%iframe{ name:'dummy-frame' }
-.sheet
-  %header
+- dc = darkness_to_color(@post.image.darkness)
+- od = opposite_darkness(@post.image.darkness)
+- odc = darkness_to_color(od)
+
+%main{style: "background-color: #{dc}; height: 100%; overflow: hidden; position: absolute; width: 100%;"}
+  #post{style: "background: none; min-width: 596px;                                                     |
+    left: 50%; margin: 0; padding: 0; position: absolute; top: 50%; transform: translate(-50%, -50%);"} |
+
     - if @post.message
-      %p= @post.message
+      %p{style: "color: #{odc}; cursor: default; display: inline-block; font-size: 16px; margin: 2px 0;"}= @post.message
 
-  - article_background_color = @post.present? ? "##{(63.75 * (@post.image.darkness * 5 % 6 - 1)).to_i.to_s(16) * 3}".upcase : '#FFFFFF'
-  %article{style: "background-color: #{article_background_color};"}
-    = image_tag(attachments.first.url, class: 'cat-img')
+    = image_tag(attachments.first.url, style: "box-shadow: 0 0 12px #{odc};" +                         |
+        'border-radius: 8px; display: block; margin: 12px auto; max-height: 800px; max-width: 800px;') |
 
-  %footer
-    = form_tag("#{api_v1_votes_url}?authorization=#{@subscriber.authorization}", method: 'post', target: 'dummy-frame') do
-      .buttons
-        - (1..7).each do |i|
-          = label_tag do
-            = radio_button_tag(:value, i)
-            = image_tag asset_url('star_icon.png')
-      = submit_tag 'Отправить'
-
-    = form_tag("#{api_v1_subscriber_url(@subscriber)}?authorization=#{@subscriber.authorization}&active=false",
-      method: 'put', target: 'dummy-frame') do
-      = submit_tag 'Отписаться :('
+    - link_url = "#{post_url @post}?Authorization=#{@subscriber.authorization}"
+    = link_to('Голосовать', link_url,
+      style: "color: #{odc}; display: block; font-size: 24px; margin: 4px 0; text-align: center;")

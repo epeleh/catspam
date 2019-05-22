@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :posts, only: %i[show]
   # resources :reports, only: %i[show]
   # get 'subscribe', to: 'subscribe#index'
+  # get 'invite', to: 'invite#index'
 
   root 'home#index'
   get '*path', to: redirect('')

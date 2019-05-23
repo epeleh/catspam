@@ -3,8 +3,8 @@
 class PostMailerPreview < ActionMailer::Preview
   # http://localhost:3000/rails/mailers/post_mailer/daily_post
   def daily_post
-    subscriber = random_subscriber || Subscriber.create(email: 'udotman3@gmail.com', name: 'Evgeny')
-    post = Post.last || Post.create(message: 'Hello World!', image: random_image)
+    subscriber = random_subscriber || Subscriber.create!(email: 'udotman3@gmail.com', name: 'Evgeny')
+    post = Post.last || Post.create!(message: 'Hello World!', image: random_image)
     PostMailer.daily_post(post, subscriber)
   end
 

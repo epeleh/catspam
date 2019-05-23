@@ -4,18 +4,15 @@ class Image < ApplicationRecord
   include Rails.application.routes.url_helpers
 
   has_one_attached :file
-  has_many :posts
+  has_one :post
 
-  scope :active, -> { where(active: true) }
-  scope :inactive, -> { where(active: false) }
-  scope :used, -> { Image.joins(:posts).uniq }
-  scope :not_used, -> { where.not(id: Image.used.pluck(:id)) }
+  scope :active, -> { where.not(id: Post.pluck(:image_id)) }
+  scope :inactive, -> { where(id: Post.pluck(:image_id)) }
 
   before_save :set_filename
 
   validates :file, attached: true, content_type: %w[image/png image/jpg image/jpeg].freeze
   validates :darkness, presence: true, inclusion: { in: 1..5 }
-  validates :active, inclusion: { in: [true, false] }
 
   def filename
     file.filename
@@ -25,8 +22,8 @@ class Image < ApplicationRecord
     url_for(file) if file.attached?
   end
 
-  def used?
-    posts.present?
+  def active?
+    post.nil?
   end
 
   private

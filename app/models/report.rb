@@ -12,9 +12,10 @@ class Report < ApplicationRecord
   private
 
   def validate_posts
-    errors.add(:posts, 'too much') if posts.count > 5
-    errors.add(:posts, 'not enough') if posts.count < 5
+    errors.add(:posts, 'too much') if posts.size > 5
+    errors.add(:posts, 'not enough') if posts.size < 5
     errors.add(:posts, 'bad weekdays') if (REQUIRED_WEEKDAYS - posts.map(&:weekday)).present?
+    errors.add(:posts, 'already used') if Post.inactive.find_by_id(posts.select(&:id)).present?
   end
 
   def send_emails

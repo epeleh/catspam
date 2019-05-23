@@ -9,13 +9,12 @@ class Post < ApplicationRecord
   scope :active, -> { includes(:report).where(report: nil) }
   scope :inactive, -> { joins(:report) }
 
-  after_save :inactivate_image
   after_create :send_emails
 
   validates :message, length: { in: 2..640 }, allow_nil: true
 
   def weekday
-    created_at.strftime('%A')
+    created_at&.strftime('%A')
   end
 
   def active?
@@ -23,10 +22,6 @@ class Post < ApplicationRecord
   end
 
   private
-
-  def inactivate_image
-    image.update(active: false)
-  end
 
   def send_emails
     Subscriber.active.each { |s| PostMailer.daily_post(self, s).deliver_later }

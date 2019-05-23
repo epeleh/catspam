@@ -3,7 +3,7 @@
 class Api::V1::ImagesController < ApplicationController
   def index
     render json: Image.where(image_params).send(
-      { true => :used, false => :not_used, nil => :all }[params[:used]&.to_bool]
+      { true => :active, false => :inactive, nil => :all }[params[:active]&.to_bool]
     )
   end
 
@@ -14,6 +14,6 @@ class Api::V1::ImagesController < ApplicationController
   private
 
   def image_params
-    params.permit(:darkness, :active)
+    params.permit(:darkness)
   end
 end

@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 2019_05_23_095350) do
 
   create_table "images", force: :cascade do |t|
     t.integer "darkness", null: false
-    t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

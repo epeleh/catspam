@@ -1,7 +1,5 @@
 ## TODO:
  - Add WeeklyReports:
-    - Add report model
-    - Add reports_controller
     - Add reports view
     - Fill report_send_job/report_mailer/mailer view
 

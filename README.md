@@ -1,5 +1,4 @@
 ## TODO:
- - Change icons (border radius)
  - Add WeeklyReports:
     - Add report model
     - Add reports_controller

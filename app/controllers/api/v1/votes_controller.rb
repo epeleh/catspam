@@ -12,6 +12,9 @@ class Api::V1::VotesController < ApplicationController
   end
 
   def create
+    @post = Post.find_by_id(params[:post_id])
+    return head :gone if @post.present? && !@post.active?
+
     @previous_vote = Vote.find_by(post_id: params[:post_id], subscriber_id: @current_user.id)
 
     if @previous_vote.present?

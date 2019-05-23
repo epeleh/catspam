@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
 
   before_action :set_current_user
+  before_action :set_funny_mode
 
   private
 
@@ -17,5 +18,9 @@ class ApplicationController < ActionController::Base
     @current_user = Subscriber.find_by_email(email)
   rescue StandardError
     nil
+  end
+
+  def set_funny_mode
+    @funny_mode = rand < 0.01
   end
 end

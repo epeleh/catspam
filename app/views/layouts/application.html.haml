@@ -8,5 +8,5 @@
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  %body{data: {controller: controller_name, action: action_name}, class: ('funny-mode' if rand < 0.01) }
+  %body{data: {controller: controller_name, action: action_name}, class: ('funny-mode' if @funny_mode) }
     = yield

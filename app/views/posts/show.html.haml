@@ -14,5 +14,9 @@
       = form_tag(api_v1_votes_url, method: 'post', class: 'buttons') do
         - last_vote = @post.votes.find_by(subscriber_id: @current_user.id)&.value || 0
         - (1..7).each do |i|
-          = radio_button_tag(:value, i, i == last_vote, id: "radio_#{i}", class: "star-bgc-#{od}")
-          = label_tag "radio_#{i}"
+          = radio_button_tag(:value, i, i == last_vote, id: "radio_#{i}",
+            disabled: !@post.active?, class: "star-bgc-#{od}")
+          - if @post.active?
+            = label_tag("radio_#{i}")
+          - else
+            = label_tag("radio_#{i}", nil, title: "Уже поздно голосовать :#{@funny_mode ? 'D' : '('}")

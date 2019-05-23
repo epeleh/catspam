@@ -77,6 +77,9 @@
           margin: 10px
           width: 64px
 
+        [type='radio'][disabled='disabled'] + label
+          cursor: default
+
         @for $i from 1 through 5
           [type='radio'].star-bgc-#{$i} + label
             background: url('star_#{$i}.png') no-repeat

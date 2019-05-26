@@ -25,9 +25,6 @@ end
 
 module Catspam
   class Application < Rails::Application
-    config.railties_order = %i[all main_app]
-    config.sass.preferred_syntax = :sass
-
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
@@ -36,12 +33,16 @@ module Catspam
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
+    config.railties_order = %i[all main_app]
+    config.sass.preferred_syntax = :sass
+
     # Don't generate system test files.
     config.generators.system_tests = nil
 
     config.after_initialize do
-      PostsSendJob.set(PostsSendJob::WAITING).perform_later
-      ReportSendJob.set(ReportSendJob::WAITING).perform_later
+      next unless Rails.const_defined?('Server')
+      PostsSendJob.set(PostsSendJob.waiting).perform_later
+      ReportSendJob.set(ReportSendJob.waiting).perform_later
     end
   end
 end

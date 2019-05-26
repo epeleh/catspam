@@ -4,7 +4,6 @@
  - Add WeeklyReports
     - Add reports show view
     - Fill report_send_job/report_mailer/mailer view
- - Make sure both jobs work properly
  - Add HomeController (page)
  - Add message generator for posts (mb: "messages" db table)
 

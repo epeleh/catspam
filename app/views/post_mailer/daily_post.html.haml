@@ -12,6 +12,5 @@
     = image_tag(attachments.first.url, style: "box-shadow: 0 0 12px #{odc};" +                         |
         'border-radius: 8px; display: block; margin: 12px auto; max-height: 800px; max-width: 800px;') |
 
-    - link_url = "#{post_url @post}?Authorization=#{@subscriber.authorization}"
-    = link_to('Голосовать', link_url,
+    = link_to('Голосовать', "#{post_url @post}?Authorization=#{@subscriber.authorization}",
       style: "color: #{odc}; display: block; font-size: 24px; margin: 4px 0; text-align: center;")

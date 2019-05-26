@@ -3,10 +3,23 @@
 class ReportSendJob < ApplicationJob
   queue_as :default
 
-  WAITING = { wait_until: (Date.parse('Sunday') + 1.week + 16.hours).utc }.freeze
-  after_perform { self.class.set(WAITING).perform_later }
+  after_perform { self.class.set(self.class.waiting).perform_later }
 
+  def self.waiting
+    time = Time.zone.now
+
+    if time.wday == Date.parse('Sunday').wday && Report.find_by_created_today.nil?
+      return { wait: 30.seconds } if time.hour >= 16
+      return { wait_until: time.beginning_of_day + 16.hours }
+    end
+
+    { wait_until: Date.parse('Sunday') + 1.week + 16.hours }
+  end
+
+  # Every Sunday at 22:00 (10pm) +0600 (Omsk)
   def perform
-    # TODO
+    last_monday = Date.parse('Monday') - 1.week
+    last_friday = Date.parse('Friday') - 1.week
+    Report.create(posts: Post.where(created_at: last_monday.beginning_of_day...last_friday.end_of_day))
   end
 end

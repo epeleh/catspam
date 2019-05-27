@@ -10,11 +10,11 @@ end.flatten.inject(:merge).each do |img_file, darkness|
   image.save!
 end
 
-# TODO: there should be something different
 puts "\n== Upload startup messages ===================================================="
-Message.create!(text: 'Hello World!')
-Message.create!(text: 'Мяу :3', darkness: 1)
-Message.create!(text: 'Ещё работаешь?', darkness: 5)
-Message.create!(text: 'Я твой новый котик')
-Message.create!(text: 'Как дела?', darkness: 3)
-Message.create!(text: 'haskell - лучший язык', darkness: 4)
+Rails.root.join('db/seeds/messages.txt').read.each_line do |line|
+  next if line.blank?
+  darkness, text = line[0...-1].split(' ', 2).map(&:strip)
+  darkness = darkness.to_i.zero? ? nil : darkness.to_i
+  puts %(upload "#{text}" #{"(#{darkness})" if darkness})
+  Message.create!(darkness: darkness, text: text)
+end

@@ -8,7 +8,7 @@
 %main{style: "background-color: #{dc}"}
   #post.centered{data: @post.attributes}
     - if @post.message
-      %p.message{style: "color: #{odc}"}= @post.message
+      %p.message{style: "color: #{odc}"}= @post.message.text
     = image_tag(@post.image.url, class: 'cat-img', style: "box-shadow: 0 0 12px #{odc}")
     - if @current_user
       = form_tag(api_v1_votes_url, method: 'post', class: 'buttons') do

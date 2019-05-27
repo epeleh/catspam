@@ -5,7 +5,6 @@
     - Add reports show view
     - Fill report_send_job/report_mailer/mailer view
  - Add HomeController (page)
- - Add message generator for posts (mb: "messages" db table)
 
 #### Additional part
  - Add the ability to somehow change the username

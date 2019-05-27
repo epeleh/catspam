@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_23_095350) do
+ActiveRecord::Schema.define(version: 2019_05_26_211524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,13 +42,21 @@ ActiveRecord::Schema.define(version: 2019_05_23_095350) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.string "text", null: false
+    t.integer "darkness"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "posts", force: :cascade do |t|
-    t.bigint "report_id"
     t.bigint "image_id", null: false
-    t.text "message"
+    t.bigint "message_id"
+    t.bigint "report_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["image_id"], name: "index_posts_on_image_id"
+    t.index ["message_id"], name: "index_posts_on_message_id"
     t.index ["report_id"], name: "index_posts_on_report_id"
   end
 

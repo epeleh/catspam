@@ -24,6 +24,7 @@ class PostsSendJob < ApplicationJob
 
   # Every weekday (Mon, Tue, Wed, Thu, Fri) between 10:00 (10am) and 20:00 (8pm) +0600 (Omsk)
   def perform
+    # TODO: associate "random" message here
     Post.create(image: Image.active.where(darkness: current_darkness).sample)
   end
 

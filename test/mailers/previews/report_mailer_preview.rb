@@ -7,10 +7,17 @@ class ReportMailerPreview < ActionMailer::Preview
 
     report = Report.last
     if report.nil?
-      posts = Report::REQUIRED_WEEKDAYS.map do |day|
-        Post.new(message: "#{day} post by ReportMailerPreview", image: random_image, created_at: Date.parse(day))
+      ActiveRecord::Base.transaction do
+        posts = Report::REQUIRED_WEEKDAYS.map do |day|
+          image = random_image
+          Post.create!(
+            message: Message.active.where(darkness: [image&.darkness, nil]).sample,
+            image: image,
+            created_at: Date.parse(day)
+          )
+        end
+        report = Report.create!(posts: posts)
       end
-      report = Report.create!(posts: posts)
     end
 
     ReportMailer.weekly_report(report, subscriber)

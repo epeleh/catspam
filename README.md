@@ -5,6 +5,7 @@
     - Add reports show view
     - Fill report_send_job/report_mailer/mailer view
  - Add HomeController (page)
+ - Add more seed data (images, messages)
 
 #### Additional part
  - Add the ability to somehow change the username

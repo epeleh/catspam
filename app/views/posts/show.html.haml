@@ -9,7 +9,12 @@
   #post.centered{data: @post.attributes}
     - if @post.message
       %p.message{style: "color: #{odc}"}= @post.message.text
-    = image_tag(@post.image.url, class: 'cat-img', style: "box-shadow: 0 0 12px #{odc}")
+
+    - if @post.active?
+      = image_tag(@post.image.url, class: 'cat-img', style: "box-shadow: 0 0 12px #{odc}")
+    - else
+      = link_to image_tag(@post.image.url, class: 'cat-img', style: "box-shadow: 0 0 12px #{odc}"), @post.report
+
     - if @current_user
       = form_tag(api_v1_votes_url, method: 'post', class: 'buttons') do
         - last_vote = @post.votes.find_by(subscriber_id: @current_user.id)&.value || 0

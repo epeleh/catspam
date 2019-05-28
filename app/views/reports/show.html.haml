@@ -1,2 +1,6 @@
-%h1 Reports#show
-%p Find me in app/views/reports/show.html.haml
+%nav
+  = link_to image_tag(asset_url("arrow_3.png")), root_url
+
+%main
+  #report.centered{data: report_data(@report)}
+    %canvas#chart{width: 1000, height: 600}

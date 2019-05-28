@@ -15,6 +15,10 @@ class Post < ApplicationRecord
   validate :validate_image
   validate :validate_message
 
+  def stars
+    votes.pluck(:value).sum
+  end
+
   def weekday
     created_at&.strftime('%A')
   end

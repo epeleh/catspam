@@ -1,6 +1,14 @@
-%nav
-  = link_to image_tag(asset_url("arrow_3.png")), root_url
+%nav= link_to image_tag(asset_url("arrow_3.png")), root_url
 
 %main
-  #report.centered{data: report_data(@report)}
-    %canvas#chart{width: 1000, height: 600}
+  #report{data: report_data(@report)}
+    %canvas#chart{width: 920}
+    .sections
+      - @report.posts.each do |post|
+        %section
+          %h2= post.weekday
+          %ul
+            - post.votes.sort_by(&:value).each do |vote|
+              %li
+                %label{title: vote.value}= vote.value
+                = link_to(vote.subscriber.name, report_url(@report), title: vote.subscriber.email)

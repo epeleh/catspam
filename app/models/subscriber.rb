@@ -10,6 +10,10 @@ class Subscriber < ApplicationRecord
   validates :name, uniqueness: true, format: { with: /\A[\w\s]*[a-z]+\z/i }, length: { in: 2..20 }, allow_nil: true
   validates :active, inclusion: { in: [true, false] }
 
+  def name
+    super || email.split('@', 2).first
+  end
+
   def authorization
     JWT.encode({ email: email }, Rails.application.secret_key_base, 'HS256')
   end

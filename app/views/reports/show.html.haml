@@ -1,2 +1,17 @@
-%h1 Reports#show
-%p Find me in app/views/reports/show.html.haml
+%nav= link_to image_tag(asset_url("arrow_3.png")), root_url
+
+%main
+  #report{data: report_data(@report)}
+    %h1 Котики недели
+    %canvas#chart{width: 920}
+    .sections
+      - @report.posts.each do |post|
+        %section
+          .title
+            %label{title: "Всего #{post.stars}★"}= post.stars
+            %h2= translate_day(post.weekday)
+          %ul
+            - post.votes.sort_by(&:value).each do |vote|
+              %li
+                %label{title: "Поствил(а) #{vote.value}★"}= vote.value
+                %p{title: vote.subscriber.email}= vote.subscriber.name

@@ -1,10 +1,8 @@
 ## TODO
 
 #### Necessary part
- - Add WeeklyReports
-    - Add reports show view
-    - Fill report_send_job/report_mailer/mailer view
  - Add HomeController (page)
+ - Update post_mailer and report_mailer views
  - Add more seed data (images, messages)
 
 #### Additional part

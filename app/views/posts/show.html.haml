@@ -12,7 +12,8 @@
     - if @post.active?
       = image_tag(@post.image.url, class: 'cat-img', style: "box-shadow: 0 0 12px #{odc}")
     - else
-      = link_to image_tag(@post.image.url, class: 'cat-img', style: "box-shadow: 0 0 12px #{odc}"), @post.report
+      = link_to image_tag(@post.image.url, class: 'cat-img',
+          style: "box-shadow: 0 0 12px #{odc}; cursor: pointer;"), @post.report
 
     - if @current_user
       = form_tag(api_v1_votes_url, method: 'post', class: 'buttons') do

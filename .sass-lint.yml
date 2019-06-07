@@ -75,7 +75,7 @@ rules:
   mixins-before-declarations: 1
   nesting-depth:
     - 1
-    - max-depth: 3
+    - max-depth: 6
   no-color-keywords: 1
   no-color-literals: 0
   no-css-comments: 1
@@ -107,7 +107,7 @@ rules:
     - 1
     - convention: hyphenatedlowercase
   property-sort-order:
-    - 1
+    - 0
     - ignore-custom-properties: false
   property-units:
     - 1

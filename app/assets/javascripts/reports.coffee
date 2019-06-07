@@ -7,29 +7,25 @@ $(document).on 'turbolinks:load', ->
   images = posts.map (x) ->
     img = new Image
     img.src = x.image.url
-    img.onload = -> @height = 130 * @height / @width; @width = 130
+    img.onload = -> @height = 148 * @height / @width; @width = 148
     img
-
-  posts[posts.length - 1].stars = 197
-  posts[posts.length - 2].stars = 0
 
   data = {
     labels: weekdays,
     datasets: [
       {type: 'line', data: posts.map((x) -> x.stars), showLine: false, hitRadius: 30},
-      {type: 'bar', data: posts.map((x) -> x.stars), label: 'Stars', borderWidth: 1, backgroundColor: '#0f02'},
+      {type: 'bar', data: posts.map((x) -> x.stars), label: 'Stars', borderWidth: 1, backgroundColor: '#00ff0022'},
     ],
   }
 
   options = {
     responsive: false,
-    title: {display: true, text: 'Weekly cats'},
-    layout: {padding: {top: 60, bottom: 60}},
+    layout: {padding: {top: 100, bottom: 40}},
     legend: {display: false},
     tooltips: {enabled: false},
     scales: {
-      xAxes: [{gridLines: {display: false}, categoryPercentage: 0.6}],
-      yAxes: [{display: false, ticks: {beginAtZero: true, }}],
+      xAxes: [{ticks: {display: false}, gridLines: {display: false}, categoryPercentage: 0.6}],
+      yAxes: [{display: false, ticks: {beginAtZero: true}}],
     },
   }
 

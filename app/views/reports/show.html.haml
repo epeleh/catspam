@@ -2,13 +2,16 @@
 
 %main
   #report{data: report_data(@report)}
+    %h1 Котики недели
     %canvas#chart{width: 920}
     .sections
       - @report.posts.each do |post|
         %section
-          %h2= post.weekday
+          .title
+            %label{title: "Всего #{post.stars}★"}= post.stars
+            %h2= translate_day(post.weekday)
           %ul
             - post.votes.sort_by(&:value).each do |vote|
               %li
-                %label{title: vote.value}= vote.value
-                = link_to(vote.subscriber.name, report_url(@report), title: vote.subscriber.email)
+                %label{title: "Поствил(а) #{vote.value}★"}= vote.value
+                %p{title: vote.subscriber.email}= vote.subscriber.name

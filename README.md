@@ -1,7 +1,6 @@
 ## TODO
 
 #### Necessary part
- - Add HomeController (page)
  - Update post_mailer and report_mailer views
  - Add more seed data (images, messages)
 

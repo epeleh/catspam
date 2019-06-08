@@ -26,11 +26,18 @@ module ApplicationHelper
 
   def translate_day(day)
     {
+      sunday: 'Воскресенье',
       monday: 'Понедельник',
       tuesday: 'Вторник',
       wednesday: 'Среда',
       thursday: 'Четверг',
-      friday: 'Пятница'
+      friday: 'Пятница',
+      saturday: 'Суббота'
     }.freeze[day.to_sym.downcase]
+  end
+
+  def translate_time(time)
+    local_time = time.in_time_zone('Almaty')
+    "#{translate_day(local_time.strftime('%A'))}, #{local_time.strftime('%d.%m.%y %H:%M')}"
   end
 end

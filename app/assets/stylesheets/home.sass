@@ -6,16 +6,28 @@ $green-color: rgba(0, 255, 0, .13)
 $bar-height: 58px
 $circle-size: 32px
 
-//[data-controller='home'][data-action='index'].funny-mode
-//  img:hover, h1:hover, h2:hover, label:hover, p:hover, canvas:hover
-//    animation: rotation .013s linear infinite
-//    transform: none !important
-//    @keyframes rotation
-//      100%
-//        transform: rotate(360deg)
+[data-controller='home'][data-action='index'].funny-mode
+  h1:hover, .block:hover
+    animation: rotation .013s linear infinite
+    transform: none !important
+    @keyframes rotation
+      100%
+        transform: rotate(360deg)
 
 
 [data-controller='home'][data-action='index']
+  h1, .circle, a
+    transition: transform .2s
+
+  h1:hover
+    transform: scale(1.06)
+
+  .circle:hover
+    transform: scale(1.12)
+
+  a:hover
+    transform: scale(1.01)
+
   main
     height: 100%
     position: absolute
@@ -49,7 +61,7 @@ $circle-size: 32px
       border-bottom: 1px solid $line-color
 
     .bar
-      width: calc(100% - 10px * 2)
+      width: calc(100% - 14px * 2)
       height: $bar-height
       margin: 14px
 
@@ -57,15 +69,13 @@ $circle-size: 32px
         display: inline-block
         margin: 0 8px
         float: left
-        position: relative
-        top: 50%
-        transform: translateY(-50%)
 
       .circle
         background-color: $green-color
         width: $circle-size
         border: 1px solid $border-color
         border-radius: 50%
+        margin: 12px 8px
 
         &:after
           content: ''
@@ -74,7 +84,7 @@ $circle-size: 32px
 
       a
         background-image: image-url('star_3.png')
-        width: calc(100% - 10px * 2 - 8px * 4 - 18px * 2 - #{$circle-size})
+        width: calc(100% - 8px * 4 - 4px - 18px * 2 - #{$circle-size})
         cursor: pointer
         border-radius: 8px
         border: $border-color solid 1px

@@ -29,18 +29,23 @@ $circle-size: 32px
       margin: 24px
 
     .blocks
+      margin: 14px auto
       width: 800px
-      margin: 26px auto 66px
-      box-shadow: 0 0 12px $main-color
-      border-radius: 8px
-      text-align: center
-      overflow: hidden
 
   .block
+    padding: 2px 0
+    display: inline-block
+    width: calc(100% - 2px)
+    margin: 14px auto
+    box-shadow: 0 0 12px $main-color
+    border-radius: 8px
+    text-align: center
+    overflow: hidden
+
     .line
       display: block
       margin: 12px auto
-      width: calc(100% - 60px)
+      width: calc(100% - 40px)
       border-bottom: 1px solid $line-color
 
     .bar
@@ -69,14 +74,15 @@ $circle-size: 32px
 
       a
         background-image: image-url('star_3.png')
-        width: calc(100% - 10px * 2 - 8px * 4 - 24px * 2 - #{$circle-size})
+        width: calc(100% - 10px * 2 - 8px * 4 - 18px * 2 - #{$circle-size})
         cursor: pointer
         border-radius: 8px
         border: $border-color solid 1px
-        padding: 0 24px
+        padding: 0 18px
         color: $main-color
         text-align: left
         text-decoration: none
+        font-size: 20px
         font-weight: bold
         height: calc(#{$bar-height} - 2px)
         line-height: calc(#{$bar-height} - 2px)

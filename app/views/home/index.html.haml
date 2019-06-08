@@ -1,2 +1,19 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml
+%main
+  %h1 Catspam
+  .blocks
+    .block
+      - @solo_posts.sort_by(&:created_at).reverse!.each do |post|
+        .bar
+          %label.circle{style: "background-color: #{darkness_to_color(post.image.darkness)};"}
+          = link_to(translate_time(post.created_at), post, style: "background-image: url(#{post.image.url})")
+
+    - @reports.sort_by(&:created_at).reverse!.each do |report|
+      .block
+        .bar
+          %label.circle
+          = link_to(translate_time(report.created_at), report)
+        .line
+        - report.posts.sort_by(&:created_at).reverse!.each do |post|
+          .bar
+            %label.circle{style: "background-color: #{darkness_to_color(post.image.darkness)};"}
+            = link_to(translate_time(post.created_at), post, style: "background-image: url(#{post.image.url})")

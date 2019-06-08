@@ -5,12 +5,13 @@ html, body
   background-color: #fff
   height: 100%
   margin: 0
-  overflow: hidden
   padding: 0
   width: 100%
+  font-family: cursive
 
 body *
   outline: none
+  cursor: default
 
 .centered
   left: 50%
@@ -19,3 +20,25 @@ body *
   position: absolute
   top: 50%
   transform: translate(-50%, -50%)
+
+.go-home
+  top: 0
+  left: 0
+  position: fixed
+  z-index: 1
+
+  a
+    display: inline-block
+    margin: 12px
+
+    img
+      height: 42px
+      opacity: .2
+      transition-duration: .2s
+      transition-property: transform, opacity
+      width: 42px
+      cursor: pointer
+
+      &:hover
+        opacity: 1
+        transform: scale(1.1)

@@ -8,31 +8,11 @@
 
 
 [data-controller='posts'][data-action='show']
-  a img, [type='radio'] + label, .message
+  [type='radio'] + label, .message
     transition: transform .2s
 
     &:hover
       transform: scale(1.1)
-
-  nav
-    top: 0
-    left: 0
-    position: fixed
-    z-index: 1
-
-    a
-      display: inline-block
-      margin: 12px
-
-      img
-        height: 42px
-        opacity: .2
-        transition-property: transform, opacity
-        width: 42px
-        cursor: pointer
-
-        &:hover
-          opacity: 1
 
   main
     height: 100%
@@ -60,31 +40,31 @@
         &:hover
           transform: scale(1.01)
 
-      .buttons
-        font-size: 0
-        height: 84px
-        margin: 4px
-        text-align: center
+  .buttons
+    font-size: 0
+    height: 84px
+    margin: 4px
+    text-align: center
 
-        [type='radio']
-          display: none
-          opacity: 0
+    [type='radio']
+      display: none
+      opacity: 0
 
-        [type='radio'] + label
-          background-size: 64px
-          cursor: pointer
-          display: inline-block
-          font-size: 0
-          height: 64px
-          margin: 10px
-          width: 64px
+    [type='radio'] + label
+      background-size: 64px
+      cursor: pointer
+      display: inline-block
+      font-size: 0
+      height: 64px
+      margin: 10px
+      width: 64px
 
-        [type='radio'][disabled='disabled'] + label
-          cursor: default
+    [type='radio'][disabled='disabled'] + label
+      cursor: default
 
-        @for $i from 1 through 5
-          [type='radio'].star-bgc-#{$i} + label
-            background: image-url('star_#{$i}.png') no-repeat
+    @for $i from 1 through 5
+      [type='radio'].star-bgc-#{$i} + label
+        background: image-url('star_#{$i}.png') no-repeat
 
-          [type='radio'].star-bgc-#{$i}:checked + label
-            background: image-url('star_#{$i}_filled.png') no-repeat
+      [type='radio'].star-bgc-#{$i}:checked + label
+        background: image-url('star_#{$i}_filled.png') no-repeat

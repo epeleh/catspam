@@ -5,7 +5,7 @@ $(document).on 'turbolinks:load', ->
   weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
   posts = report.posts.sort((a, b) -> weekdays.indexOf(a) - weekdays.indexOf(b))
   images = posts.map (x) ->
-    img = new Image
+    img = new Image()
     img.src = x.image.url
     img.onload = -> @height = 148 * @height / @width; @width = 148
     img
@@ -13,8 +13,19 @@ $(document).on 'turbolinks:load', ->
   data = {
     labels: weekdays,
     datasets: [
-      {type: 'line', data: posts.map((x) -> x.stars), showLine: false, hitRadius: 30},
-      {type: 'bar', data: posts.map((x) -> x.stars), label: 'Stars', borderWidth: 1, backgroundColor: '#00ff0022'},
+      {
+        type: 'line',
+        data: posts.map((x) -> x.stars),
+        showLine: false,
+        hitRadius: 30
+      },
+      {
+        type: 'bar',
+        data: posts.map((x) -> x.stars),
+        label: 'Stars',
+        borderWidth: 1,
+        backgroundColor: 'rgba(0, 255, 0, .13)'
+      },
     ],
   }
 

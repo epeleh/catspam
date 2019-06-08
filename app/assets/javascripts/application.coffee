@@ -4,6 +4,7 @@
 #= require turbolinks
 #= require cookies
 #= require chart
+#= require tooltip
 #= require_self
 #= require_tree .
 

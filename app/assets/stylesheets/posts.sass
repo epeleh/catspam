@@ -69,3 +69,7 @@
 
       [type='radio'].star-bgc-#{$i}:checked + label
         background: image-url('star_#{$i}_filled.png') no-repeat
+
+  @media screen and (max-height: 740px)
+    .cat-img
+      height: calc(100vh - 739px + 600px - 80px)

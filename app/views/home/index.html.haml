@@ -1,2 +1,13 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml
+%main
+  %h1 Catspam
+  .blocks
+    - @reports.each do |report|
+      .block
+        .bar
+          %label.circle
+          = link_to(report.created_at, report)
+        .line
+        - report.posts.each do |post|
+          .bar
+            %label.circle{style: "background-color: #{darkness_to_color(post.image.darkness)};"}
+            = link_to(post.created_at, post, style: "background-image: url(#{post.image.url})")

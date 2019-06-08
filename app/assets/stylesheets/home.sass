@@ -1,3 +1,85 @@
-// Place all the styles related to the home controller here.
-// They will automatically be included in application.css.
-// You can use Sass here: http://sass-lang.com/
+$main-color: #7f7f7f
+$border-color: #d8d8d8
+$line-color: #e0e0e0
+$green-color: rgba(0, 255, 0, .13)
+
+$bar-height: 58px
+$circle-size: 32px
+
+//[data-controller='home'][data-action='index'].funny-mode
+//  img:hover, h1:hover, h2:hover, label:hover, p:hover, canvas:hover
+//    animation: rotation .013s linear infinite
+//    transform: none !important
+//    @keyframes rotation
+//      100%
+//        transform: rotate(360deg)
+
+
+[data-controller='home'][data-action='index']
+  main
+    height: 100%
+    position: absolute
+    width: 100%
+    text-align: center
+
+    h1
+      font-size: 38px
+      display: inline-block
+      color: $main-color
+      margin: 24px
+
+    .blocks
+      width: 800px
+      margin: 26px auto 66px
+      box-shadow: 0 0 12px $main-color
+      border-radius: 8px
+      text-align: center
+      overflow: hidden
+
+  .block
+    .line
+      display: block
+      margin: 12px auto
+      width: calc(100% - 60px)
+      border-bottom: 1px solid $line-color
+
+    .bar
+      width: calc(100% - 10px * 2)
+      height: $bar-height
+      margin: 14px
+
+      *
+        display: inline-block
+        margin: 0 8px
+        float: left
+        position: relative
+        top: 50%
+        transform: translateY(-50%)
+
+      .circle
+        background-color: $green-color
+        width: $circle-size
+        border: 1px solid $border-color
+        border-radius: 50%
+
+        &:after
+          content: ''
+          display: block
+          padding-top: 100%
+
+      a
+        background-image: image-url('star_3.png')
+        width: calc(100% - 10px * 2 - 8px * 4 - 24px * 2 - #{$circle-size})
+        cursor: pointer
+        border-radius: 8px
+        border: $border-color solid 1px
+        padding: 0 24px
+        color: $main-color
+        text-align: left
+        text-decoration: none
+        font-weight: bold
+        height: calc(#{$bar-height} - 2px)
+        line-height: calc(#{$bar-height} - 2px)
+        background-repeat: no-repeat
+        background-position: right
+        background-size: contain

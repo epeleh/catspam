@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
-  def index; end
+  def index
+    @reports = Report.all
+    @solo_posts = Post.active
+  end
 end

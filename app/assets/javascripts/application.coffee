@@ -14,7 +14,7 @@ if params.has('Authorization')
   params.delete('Authorization')
   href = window.location.href.split('?')[0]
   params_str = Array.from(params).map(([k, v]) -> "#{k}=#{v}").join('&')
-  Turbolinks.visit("#{href}#{if params_str then '?' else ''}#{params_str}")
+  Turbolinks.visit("#{href}#{if params_str then '?' else ''}#{params_str}", history: false)
 
 $.ajaxSetup {
   dataType: 'json',

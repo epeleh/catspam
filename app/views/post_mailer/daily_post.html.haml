@@ -2,16 +2,15 @@
 - od = opposite_darkness(@post.image.darkness)
 - odc = darkness_to_color(od)
 
-%main{style: "background-color: #{dc}; height: 100%; overflow: hidden; position: absolute; width: 100%;"}
-  #post{style: "background: none; min-width: 596px;                                                     |
-    left: 50%; margin: 0; padding: 0; position: absolute; top: 50%; transform: translate(-50%, -50%);"} |
+- content_for(:background_color) { dc }
 
-    - if @post.message
-      %p{style: "color: #{odc}; cursor: default; display: inline-block; font-size: 16px; margin: 2px 0;"}
-        = @post.message.text
+#post{style: 'margin: 12px; text-align: center;'}
+  - if @post.message
+    %p{style: "text-align: center; color: #{odc}; margin: 8px; font-size: 16px; cursor: default;"}
+      = @post.message.text
 
-    = image_tag(attachments.first.url, style: "box-shadow: 0 0 12px #{odc};" +                         |
-        'border-radius: 8px; display: block; margin: 12px auto; max-height: 800px; max-width: 800px;') |
+  = image_tag attachments.first.url,
+      style: "box-shadow: 0 0 12px #{odc}; border-radius: 8px; margin: 12px auto; max-height: 600px; max-width: 800px;"
 
-    = link_to('Голосовать', "#{post_url @post}?Authorization=#{@subscriber.authorization}",
-        style: "color: #{odc}; display: block; font-size: 24px; margin: 4px 0; text-align: center;")
+  = link_to '--> Голосовать <--', "#{post_url @post}?Authorization=#{@subscriber.authorization}",
+      style: "display: block; text-align: center; color: #{odc}; font-size: 20px; margin: 8px; text-decoration: none;"

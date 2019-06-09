@@ -1,7 +1,6 @@
 ## TODO
 
 #### Necessary part
- - Update post_mailer and report_mailer views
  - Add more seed data (images, messages)
 
 #### Additional part

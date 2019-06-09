@@ -44,4 +44,4 @@ $(document).on 'turbolinks:load', ->
   images.forEach((img, i) -> chart.config.data.datasets[0]._meta[chart.id].data[i]._model.pointStyle = img)
 
   $('#chart').click (event) ->
-    Turbolinks.visit("/posts/#{posts[Math.floor(event.offsetX / (@width / 5))].id}")
+    Turbolinks.visit("/posts/#{posts[Math.floor(event.offsetX / (@offsetWidth / 5))].id}")

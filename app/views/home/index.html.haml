@@ -1,5 +1,18 @@
 %main
   %h1 Catspam
+
+  %form.toolbar
+    %label Твоя почта:
+    %input{type: 'email', name: 'email', value: @current_user.email, disabled: true, class: 'dynamic-width'}
+    %input{id: 'activation', type: 'checkbox', name: 'active', checked: @current_user.active?}
+    %label{for: 'activation'}= @current_user.active? ? 'Отписаться' : 'Подписаться'
+    %br
+    %label Твой ник:
+    %input{type: 'text', name: 'name', value: @current_user.name, class: 'dynamic-width'}
+    %input{type: 'submit', value: 'Поменять'}
+    %br
+    = link_to('--> Позвать друга <--', root_url)
+
   .blocks
     .block
       - @solo_posts.sort_by(&:created_at).reverse!.each do |post|

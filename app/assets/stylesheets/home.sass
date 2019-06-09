@@ -39,11 +39,43 @@ $circle-size: 32px
       font-size: 38px
       display: inline-block
       color: $main-color
-      margin: 24px
+      margin: 24px 24px 2px
 
     .blocks
-      margin: 14px auto
+      margin: 18px auto
       width: 800px
+
+  .toolbar
+    width: 800px
+    margin: 0 auto
+
+    *
+      color: $main-color
+      font-size: 14px
+      text-decoration: none
+
+    [type='submit'], [type='checkbox'], [for='activation'], a
+      cursor: pointer
+
+    [type='email'], [type='text'], [type='submit']
+      border: 0
+      padding: 0
+      background: none
+
+    [type='email'], [type='text']
+      font-weight: bold
+
+    [type='submit']
+      visibility: hidden
+
+    [type='checkbox']
+      display: none
+
+    [type='text']
+      cursor: text
+
+    [for='activation']::selection
+      background: transparent
 
   .block
     padding: 2px 0

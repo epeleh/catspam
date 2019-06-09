@@ -5,6 +5,7 @@
 #= require cookies
 #= require chart
 #= require tooltip
+#= require dynamic_width
 #= require_self
 #= require_tree .
 

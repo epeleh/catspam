@@ -14,11 +14,12 @@
     = link_to('--> Позвать друга <--', root_url)
 
   .blocks
-    .block
-      - @solo_posts.sort_by(&:created_at).reverse!.each do |post|
-        .bar
-          %label.circle{style: "background-color: #{darkness_to_color(post.image.darkness)};"}
-          = link_to(translate_time(post.created_at), post, style: "background-image: url(#{post.image.url})")
+    - unless @solo_posts.empty?
+      .block
+        - @solo_posts.sort_by(&:created_at).reverse!.each do |post|
+          .bar
+            %label.circle{style: "background-color: #{darkness_to_color(post.image.darkness)};"}
+            = link_to(translate_time(post.created_at), post, style: "background-image: url(#{post.image.url})")
 
     - @reports.sort_by(&:created_at).reverse!.each do |report|
       .block

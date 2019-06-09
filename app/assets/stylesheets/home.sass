@@ -54,7 +54,7 @@ $circle-size: 32px
       font-size: 14px
       text-decoration: none
 
-    [type='submit'], [type='checkbox'], [for='activation'], a
+    [type='submit'], [type='checkbox'], #subscribe-btn, a
       cursor: pointer
 
     [type='email'], [type='text'], [type='submit']
@@ -65,8 +65,12 @@ $circle-size: 32px
     [type='email'], [type='text']
       font-weight: bold
 
+    #smile
+      opacity: 0
+
     [type='submit']
       visibility: hidden
+      color: #5d9e5d
 
     [type='checkbox']
       display: none
@@ -74,7 +78,7 @@ $circle-size: 32px
     [type='text']
       cursor: text
 
-    [for='activation']::selection
+    #subscribe-btn::selection
       background: transparent
 
   .block

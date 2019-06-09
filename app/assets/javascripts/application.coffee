@@ -9,13 +9,17 @@
 #= require_self
 #= require_tree .
 
+# Array monkey patch
+Array.prototype.shuffle = ->
+  @.map((a) -> [Math.random(), a]).sort((a, b) -> a[0] - b[0]).map((a) -> a[1])
+
 params = new Map(window.location.search.substring(1).split('&').map((x) -> x.split('=')))
 if params.has('Authorization')
   Cookies.set('Authorization', params.get('Authorization'), {expires: 365})
   params.delete('Authorization')
   href = window.location.href.split('?')[0]
   params_str = Array.from(params).map(([k, v]) -> "#{k}=#{v}").join('&')
-  Turbolinks.visit("#{href}#{if params_str then '?' else ''}#{params_str}", history: false)
+  Turbolinks.visit("#{href}#{if params_str then '?' else ''}#{params_str}", {history: false})
 
 $.ajaxSetup {
   dataType: 'json',

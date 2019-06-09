@@ -5,7 +5,8 @@
     %label Твоя почта:
     %input{type: 'email', name: 'email', value: @current_user.email, disabled: true, class: 'dynamic-width'}
     %input{id: 'activation', type: 'checkbox', name: 'active', checked: @current_user.active?}
-    %label{for: 'activation'}= @current_user.active? ? 'Отписаться' : 'Подписаться'
+    %label{for: 'activation', id: 'subscribe-btn'}= @current_user.active? ? 'Отписаться' : 'Подписаться'
+    %label{for: 'activation', id: 'smile'} :)
     %br
     %label Твой ник:
     %input{type: 'text', name: 'name', value: @current_user.name, class: 'dynamic-width'}

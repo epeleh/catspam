@@ -1,18 +1,22 @@
 %main
   %h1 Catspam
 
-  = form_tag(api_v1_subscriber_url(@current_user), method: 'put', class: 'toolbar') do
-    %label Твоя почта:
-    %input{type: 'email', name: 'email', value: @current_user.email, disabled: true, spellcheck: 'false', class: 'dynamic-width'}
-    %input{id: 'activation', type: 'checkbox', name: 'active', checked: @current_user.active?}
-    %label{for: 'activation', id: 'subscribe-btn'}= @current_user.active? ? 'Отписаться' : 'Подписаться'
-    %label{for: 'activation', id: 'smile'} :)
-    %br
-    %label Твой ник:
-    %input{type: 'text', name: 'name', value: @current_user.name, spellcheck: 'false', class: 'dynamic-width'}
-    %input{type: 'submit', value: 'Поменять', title: '#'}
-    %br
-    = link_to('--> Позвать друга <--', root_url)
+  - if @current_user
+    = form_tag(api_v1_subscriber_url(@current_user), method: 'put', class: 'toolbar') do
+      %label Твоя почта:
+      %input{type: 'email', name: 'email', value: @current_user.email, disabled: true, spellcheck: 'false', class: 'dynamic-width'}
+      %input{id: 'activation', type: 'checkbox', name: 'active', checked: @current_user.active?}
+      %label{for: 'activation', id: 'subscribe-btn'}= @current_user.active? ? 'Отписаться' : 'Подписаться'
+      %label{for: 'activation', id: 'smile'} :)
+      %br
+      %label Твой ник:
+      %input{type: 'text', name: 'name', value: @current_user.name, spellcheck: 'false', class: 'dynamic-width'}
+      %input{type: 'submit', value: 'Поменять', title: '#'}
+      %br
+      = link_to('--> Позвать друга <--', root_url)
+  - else
+    .toolbar
+      = link_to('--> Присоединиться к нам <--', root_url)
 
   .blocks
     - unless @solo_posts.empty?

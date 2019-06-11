@@ -1,7 +1,7 @@
 %main
   %h1 Catspam
 
-  %form.toolbar
+  = form_tag(api_v1_subscriber_url(@current_user), method: 'put', class: 'toolbar') do
     %label Твоя почта:
     %input{type: 'email', name: 'email', value: @current_user.email, disabled: true, class: 'dynamic-width'}
     %input{id: 'activation', type: 'checkbox', name: 'active', checked: @current_user.active?}
@@ -10,7 +10,7 @@
     %br
     %label Твой ник:
     %input{type: 'text', name: 'name', value: @current_user.name, class: 'dynamic-width'}
-    %input{type: 'submit', value: 'Поменять'}
+    %input{type: 'submit', value: 'Поменять', title: '#'}
     %br
     = link_to('--> Позвать друга <--', root_url)
 

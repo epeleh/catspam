@@ -4,8 +4,6 @@
  - Add more seed data (images, messages)
 
 #### Additional part
- - Add the ability to somehow change the username
- - Add the ability to unsubscribe
  - Add SubscribeController (page)
     - -> send invite to yourself (invite#send)
  - Add InviteController (endpoint/page)

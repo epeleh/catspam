@@ -7,7 +7,7 @@ $bar-height: 58px
 $circle-size: 32px
 
 [data-controller='home'][data-action='index'].funny-mode
-  h1:hover, .block:hover
+  h1:hover, .block:hover, .toolbar *:hover
     animation: rotation .013s linear infinite
     transform: none !important
     @keyframes rotation
@@ -16,7 +16,7 @@ $circle-size: 32px
 
 
 [data-controller='home'][data-action='index']
-  h1, .circle, a
+  h1, .circle, a, .toolbar *
     transition: transform .2s
 
   h1:hover
@@ -27,6 +27,9 @@ $circle-size: 32px
 
   a:hover
     transform: scale(1.01)
+
+  .toolbar *:hover
+    transform: scale(1.025)
 
   main
     height: 100%
@@ -39,11 +42,48 @@ $circle-size: 32px
       font-size: 38px
       display: inline-block
       color: $main-color
-      margin: 24px
+      margin: 24px 24px 2px
 
     .blocks
-      margin: 14px auto
+      margin: 18px auto
       width: 800px
+
+  .toolbar
+    width: 800px
+    margin: 0 auto
+
+    *
+      color: $main-color
+      font-size: 14px
+      text-decoration: none
+      display: inline-block
+
+    [type='submit'], [type='checkbox'], #subscribe-btn, a
+      cursor: pointer
+
+    [type='email'], [type='text'], [type='submit']
+      border: 0
+      padding: 0
+      background: none
+
+    [type='email'], [type='text']
+      font-weight: bold
+
+    #smile
+      opacity: 0
+
+    [type='submit']
+      visibility: hidden
+      color: #5d9e5d
+
+    [type='checkbox']
+      display: none
+
+    [type='text']
+      cursor: text
+
+    #subscribe-btn::selection
+      background: transparent
 
   .block
     padding: 2px 0

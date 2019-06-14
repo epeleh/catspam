@@ -38,6 +38,6 @@ class Post < ApplicationRecord
   end
 
   def send_emails
-    Subscriber.active.each { |s| PostMailer.daily_post(self, s).deliver_later }
+    Subscriber.active.each { |s| PostMailer.daily_post(s, self).deliver_later }
   end
 end

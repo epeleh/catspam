@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PostMailer < ApplicationMailer
-  def daily_post(post, subscriber)
+  def daily_post(subscriber, post)
     @subscriber = subscriber
     @post = post
 

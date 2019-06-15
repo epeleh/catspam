@@ -5,12 +5,9 @@ class InviteMailerPreview < ActionMailer::Preview
   def invite
     subscriber = random_subscriber || Subscriber.create!(email: 'udotman3@gmail.com', name: 'Evgeny')
     current_user = random_subscriber
-    type = (1..5).to_a.sample
+    type = (0..4).to_a.sample
 
-    [
-      InviteMailer.invite(subscriber, current_user, type),
-      InviteMailer.invite(subscriber)
-    ].sample
+    InviteMailer.invite(subscriber, current_user, type)
   end
 
   private

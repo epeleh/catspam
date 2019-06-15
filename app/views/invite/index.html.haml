@@ -1,2 +1,18 @@
-%h1 Invite#index
-%p Find me in app/views/invite/index.html.haml
+%nav.go-home= link_to image_tag('arrow_3.png'), root_url
+
+%main
+  .templates
+    - @mail_templates.each_with_index do |template, i|
+      .template{id: "template_#{i}", style: ('display: none;' if i != 1)}= template
+    - (1..4).each do |i|
+      = radio_button_tag(:template, i, i == 1)
+      = label_tag("template_#{i}", "Вариант №#{i}")
+
+  = form_tag(api_v1_invite_url, method: 'post', class: 'toolbar') do
+    %label Его почта:
+    %input{type: 'email', name: 'email', value: '123', spellcheck: 'false', class: 'dynamic-width'}
+    %br
+    %label Его ник:
+    %input{type: 'text', name: 'name', value: '456', spellcheck: 'false', class: 'dynamic-width'}
+    %br
+    %input{type: 'submit', value: '--> Отправить <--'}

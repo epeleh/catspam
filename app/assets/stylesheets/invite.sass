@@ -1,3 +1,43 @@
-// Place all the styles related to the invite controller here.
-// They will automatically be included in application.css.
-// You can use Sass here: http://sass-lang.com/
+$main-color: #7f7f7f
+$border-color: #d8d8d8
+$line-color: #e0e0e0
+$green-color: rgba(0, 255, 0, .13)
+
+[data-controller='invite'][data-action='index']
+  main
+    height: 100%
+    position: absolute
+    width: 100%
+    min-width: 804px
+
+    .templates
+      margin: 66px auto
+      width: 800px
+
+  .template
+    display: inline-block
+    width: 100%
+    box-shadow: 0 0 12px $main-color
+    border-radius: 8px
+    overflow: hidden
+
+  .toolbar
+    width: 800px
+    margin: 0 auto
+    text-align: center
+
+    *
+      color: $main-color
+      font-size: 16px
+      text-decoration: none
+      display: inline-block
+      border: 0
+      padding: 0
+      background: none
+
+    [type='email'], [type='text']
+      font-weight: bold
+      cursor: text
+
+    [type='radio']
+      display: none

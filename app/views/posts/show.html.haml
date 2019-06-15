@@ -2,7 +2,7 @@
 - od = opposite_darkness(@post.image.darkness)
 - odc = darkness_to_color(od)
 
-%nav.go-home= link_to image_tag(asset_url("arrow_#{od}.png")), root_url
+%nav.go-home= link_to image_tag("arrow_#{od}.png"), root_url
 
 %main{style: "background-color: #{dc}"}
   #post.centered{data: @post.attributes}

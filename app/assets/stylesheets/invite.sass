@@ -1,0 +1,73 @@
+$main-color: #7f7f7f
+
+[data-controller='invite'][data-action='index'].funny-mode
+  img:hover, .template:hover, .radio-btns *:hover, .toolbar *:hover
+    animation: rotation .013s linear infinite
+    transform: none !important
+    @keyframes rotation
+      100%
+        transform: rotate(360deg)
+
+
+[data-controller='invite'][data-action='index']
+  .template, .radio-btns *, .toolbar *
+    transition: transform .2s
+
+    &:hover
+      transform: scale(1.025)
+
+  .template:hover
+    transform: scale(1.004)
+
+  main
+    height: 100%
+    position: absolute
+    width: 100%
+    min-width: 924px
+
+    .templates
+      margin: 66px auto 32px
+      width: 920px
+
+      .template
+        display: inline-block
+        width: 100%
+        box-shadow: 0 0 12px $main-color
+        border-radius: 8px
+        overflow: hidden
+
+  .radio-btns
+    padding: 0 4px
+
+    [type='radio']
+      display: none
+
+      & + label
+        display: inline-block
+        margin: 4px
+        cursor: pointer
+        color: $main-color
+
+      &:checked + label
+        color: #5d9e5d
+
+  .toolbar
+    margin: 0 auto 66px
+    text-align: center
+
+    *
+      color: $main-color
+      font-size: 16px
+      margin: 2px
+      text-decoration: none
+      display: inline-block
+      border: 0
+      padding: 0
+      background: none
+
+    [type='email'], [type='text']
+      font-weight: bold
+      cursor: text
+
+    [type='submit']
+      cursor: pointer

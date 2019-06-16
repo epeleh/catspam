@@ -18,7 +18,7 @@ $(document).on('turbolinks:load', function () {
 
     target.removeAttr('title');
     tooltip.css('opacity', 0)
-      .html(tip.replace('\n', '<br />'))
+      .html(tip.replace('\n', '<br>'))
       .appendTo('body');
 
     var init_tooltip = function () {

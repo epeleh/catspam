@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Subscriber < ApplicationRecord
-  has_many :votes
+  has_many :votes, dependent: :destroy
 
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }

@@ -3,9 +3,9 @@
 class Post < ApplicationRecord
   belongs_to :image
   belongs_to :message, optional: true
-  belongs_to :report, optional: true
+  belongs_to :report, optional: true, dependent: :destroy
 
-  has_many :votes
+  has_many :votes, dependent: :destroy
 
   scope :active, -> { includes(:report).where(report: nil) }
   scope :inactive, -> { joins(:report) }
@@ -38,6 +38,6 @@ class Post < ApplicationRecord
   end
 
   def send_emails
-    Subscriber.active.each { |s| PostMailer.daily_post(self, s).deliver_later }
+    Subscriber.active.each { |s| PostMailer.daily_post(s, self).deliver_later }
   end
 end

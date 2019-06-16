@@ -33,6 +33,8 @@ $(document).on 'turbolinks:load', ->
     e.preventDefault()
     return if $(@).val() != 'Поменять'
 
+    $('.toolbar [type="text"]').val($('.toolbar [type="text"]').val().trim())
+
     url = $(@)[0].form.action
     type = 'PUT'
     data = JSON.stringify({name: $('.toolbar [type="text"]').val()})
@@ -48,7 +50,7 @@ $(document).on 'turbolinks:load', ->
         return btn.val('Слишком длинный') if errors.includes('is too long (maximum is 20 characters)')
         return btn.val('Уже занят') if errors.includes('has already been taken')
 
-      title = 'Ты умный, разберешься:\n /\\A([a-z0-9!@#$^]+[-_. ]?)*[a-z0-9!]+\\z/i'
+      title = 'Ты умный, разберёшься:\n /\\A([a-z0-9!@#$^]+[-_. ]?)*[a-z0-9!]+\\z/i'
       btn.attr({title}).val('Всё плохо')
 
     $.ajax({url, type, data, success, error})

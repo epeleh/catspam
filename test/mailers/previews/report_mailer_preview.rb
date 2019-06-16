@@ -20,7 +20,7 @@ class ReportMailerPreview < ActionMailer::Preview
       end
     end
 
-    ReportMailer.weekly_report(report, subscriber)
+    ReportMailer.weekly_report(subscriber, report)
   end
 
   private

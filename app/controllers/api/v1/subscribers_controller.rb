@@ -14,6 +14,7 @@ class Api::V1::SubscribersController < ApplicationController
   def create
     @subscriber = Subscriber.new(subscriber_params)
     if @subscriber.save
+      InviteMailer.invite(@subscriber, @current_user, params.permit(:invite_type)[:invite_type]).deliver_later
       render json: @subscriber, status: :created
     else
       render json: @subscriber.errors, status: :unprocessable_entity

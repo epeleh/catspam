@@ -53,7 +53,9 @@
       Если хочешь, можешь сейчас зайти на сайт,
       %br но в принципе, основная фишка в рассылке, так что забей.
 
-    = link_to '--> Перейти на сайт <--', "#{root_url}?Authorization=#{@subscriber.authorization}",
+    -# Don't use root_url instead of http://#{ENV['RAILS_HOST']}
+    -# it may occur some errors in production mode due to InviteController::MAIL_TEMPLATES
+    = link_to '--> Перейти на сайт <--', "http://#{ENV['RAILS_HOST']}?Authorization=#{@subscriber.authorization}",
         style: 'display: block; text-align: center; color: #7f7f7f; font-size: 18px; margin: 8px; text-decoration: none;'
 
     :markdown

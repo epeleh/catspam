@@ -4,7 +4,7 @@ class Image < ApplicationRecord
   include Rails.application.routes.url_helpers
 
   has_one_attached :file
-  has_one :post
+  has_one :post, dependent: :destroy
 
   scope :active, -> { where.not(id: Post.pluck(:image_id)) }
   scope :inactive, -> { where(id: Post.pluck(:image_id)) }

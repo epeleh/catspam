@@ -3,9 +3,9 @@
 class Post < ApplicationRecord
   belongs_to :image
   belongs_to :message, optional: true
-  belongs_to :report, optional: true
+  belongs_to :report, optional: true, dependent: :destroy
 
-  has_many :votes
+  has_many :votes, dependent: :destroy
 
   scope :active, -> { includes(:report).where(report: nil) }
   scope :inactive, -> { joins(:report) }

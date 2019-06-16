@@ -45,7 +45,7 @@ $(document).on 'turbolinks:load', ->
 
     error = (data) ->
       if data.responseJSON?
-        alert("Что-то не так.\nИзвини, было лень сделать красиво:\n" + JSON.stringify(data.responseJSON, null, 2))
+        alert('Что-то не так.\nИзвини, было лень сделать красиво:\n' + JSON.stringify(data.responseJSON, null, 2))
       else
         alert('Сайт упал, лол')
 

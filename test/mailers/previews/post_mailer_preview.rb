@@ -10,7 +10,7 @@ class PostMailerPreview < ActionMailer::Preview
       post = Post.create!(message: Message.active.where(darkness: [image&.darkness, nil]).sample, image: image)
     end
 
-    PostMailer.daily_post(post, subscriber)
+    PostMailer.daily_post(subscriber, post)
   end
 
   private

@@ -13,10 +13,10 @@
       %input{type: 'text', name: 'name', value: @current_user.name, spellcheck: 'false', class: 'dynamic-width'}
       %input{type: 'submit', value: 'Поменять', title: '#'}
       %br
-      = link_to('--> Позвать друга <--', root_url)
+      = link_to('--> Позвать друга <--', invite_url)
   - else
     .toolbar
-      = link_to('--> Присоединиться к нам <--', root_url)
+      = link_to('--> Присоединиться к нам <--', invite_url)
 
   .blocks
     - unless @solo_posts.empty?

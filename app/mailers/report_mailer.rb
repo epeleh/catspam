@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ReportMailer < ApplicationMailer
-  def weekly_report(report, subscriber)
+  def weekly_report(subscriber, report)
     @subscriber = subscriber
     @report = report
 

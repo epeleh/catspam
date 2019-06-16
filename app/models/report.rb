@@ -19,6 +19,6 @@ class Report < ApplicationRecord
   end
 
   def send_emails
-    Subscriber.active.each { |s| ReportMailer.weekly_report(self, s).deliver_later }
+    Subscriber.active.each { |s| ReportMailer.weekly_report(s, self).deliver_later }
   end
 end

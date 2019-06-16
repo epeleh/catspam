@@ -14,16 +14,13 @@ Rails.application.routes.draw do
 
       resources :subscribers, only: %i[index show create update]
       resources :votes, only: %i[index show create]
-
-      # post :invite, to: 'invite#send'
     end
   end
 
   resources :posts, only: %i[show]
   resources :reports, only: %i[show]
 
-  # get 'subscribe', to: 'subscribe#index'
-  # get 'invite', to: 'invite#index'
+  get 'invite', to: 'invite#index'
 
   root 'home#index'
   get '*path', to: redirect('')

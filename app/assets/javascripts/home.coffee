@@ -33,6 +33,8 @@ $(document).on 'turbolinks:load', ->
     e.preventDefault()
     return if $(@).val() != 'Поменять'
 
+    $('.toolbar [type="text"]').val($('.toolbar [type="text"]').val().trim())
+
     url = $(@)[0].form.action
     type = 'PUT'
     data = JSON.stringify({name: $('.toolbar [type="text"]').val()})

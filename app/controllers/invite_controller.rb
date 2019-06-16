@@ -1,15 +1,18 @@
 # frozen_string_literal: true
 
 class InviteController < ApplicationController
+  SUBSCRIBER_TEMPLATE = Subscriber.new(email: '{{subscriber_email}}', name: '{{subscriber_name}}').freeze
+  CURRENT_USER_TEMPLATE = Subscriber.new(email: '{{current_user_email}}', name: '{{current_user_name}}').freeze
   MAIL_TEMPLATES = [
-    InviteMailer.invite(Subscriber.new(email: 'SUBSCRIBER_EMAIL', name: 'SUBSCRIBER_NAME')),
-    InviteMailer.invite(Subscriber.new(email: 'SUBSCRIBER_EMAIL', name: 'SUBSCRIBER_NAME'), @current_user, 1),
-    InviteMailer.invite(Subscriber.new(email: 'SUBSCRIBER_EMAIL', name: 'SUBSCRIBER_NAME'), @current_user, 2),
-    InviteMailer.invite(Subscriber.new(email: 'SUBSCRIBER_EMAIL', name: 'SUBSCRIBER_NAME'), @current_user, 3),
-    InviteMailer.invite(Subscriber.new(email: 'SUBSCRIBER_EMAIL', name: 'SUBSCRIBER_NAME'), @current_user, 4)
-  ].map! do |x1|
-    x1.body.encoded[%r{<body[\s\S]*?>([\s\S]*?)</body>}i, 1].strip!
-      .tap { |x2| x2.gsub!(x2[/href=['"]([\s\S]*?)['"]/i, 1], '#') }.html_safe
+    InviteMailer.invite(SUBSCRIBER_TEMPLATE),
+    InviteMailer.invite(SUBSCRIBER_TEMPLATE, CURRENT_USER_TEMPLATE, 1),
+    InviteMailer.invite(SUBSCRIBER_TEMPLATE, CURRENT_USER_TEMPLATE, 2),
+    InviteMailer.invite(SUBSCRIBER_TEMPLATE, CURRENT_USER_TEMPLATE, 3),
+    InviteMailer.invite(SUBSCRIBER_TEMPLATE, CURRENT_USER_TEMPLATE, 4)
+  ].map! do |x|
+    x.body.encoded[%r{<body[\s\S]*?>([\s\S]*?)</body>}i, 1].strip!
+      .tap { |x1| x1.gsub!(/\s*href=['"]([\s\S]*?)['"]/i, '') }
+      .tap { |x2| x2.gsub!(/{{(\w+)}}/i, '<span id="\1"></span>') }.html_safe
   end.freeze
 
   def index

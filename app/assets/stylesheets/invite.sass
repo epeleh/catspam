@@ -1,34 +1,46 @@
 $main-color: #7f7f7f
-$border-color: #d8d8d8
-$line-color: #e0e0e0
-$green-color: rgba(0, 255, 0, .13)
 
 [data-controller='invite'][data-action='index']
   main
     height: 100%
     position: absolute
     width: 100%
-    min-width: 804px
+    min-width: 924px
 
     .templates
-      margin: 66px auto
-      width: 800px
+      margin: 66px auto 32px
+      width: 920px
 
-  .template
-    display: inline-block
-    width: 100%
-    box-shadow: 0 0 12px $main-color
-    border-radius: 8px
-    overflow: hidden
+      .template
+        display: inline-block
+        width: 100%
+        box-shadow: 0 0 12px $main-color
+        border-radius: 8px
+        overflow: hidden
+
+  .radio-btns
+    padding: 0 4px
+
+    [type='radio']
+      display: none
+
+      & + label
+        display: inline-block
+        margin: 4px
+        cursor: pointer
+        color: $main-color
+
+      &:checked + label
+        color: #5d9e5d
 
   .toolbar
-    width: 800px
-    margin: 0 auto
+    margin: 0 auto 66px
     text-align: center
 
     *
       color: $main-color
       font-size: 16px
+      margin: 2px
       text-decoration: none
       display: inline-block
       border: 0
@@ -39,5 +51,5 @@ $green-color: rgba(0, 255, 0, .13)
       font-weight: bold
       cursor: text
 
-    [type='radio']
-      display: none
+    [type='submit']
+      cursor: pointer

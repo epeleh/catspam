@@ -27,10 +27,6 @@ $(document).on 'turbolinks:load', ->
   $('.toolbar [type="submit"]').click (e) ->
     e.preventDefault()
 
-    # TODO: remove two lines below
-    alert('Временно отключил эту кнопку.\nПланирую скоро ресетнуть БД - пока рано добавлять пользователей')
-    return false
-
     $('.toolbar [type="email"]').val($('.toolbar [type="email"]').val().trim())
     $('.toolbar [type="text"]').val($('.toolbar [type="text"]').val().trim())
 
@@ -44,7 +40,7 @@ $(document).on 'turbolinks:load', ->
 
     success = ->
       email = $('.toolbar [type="email"]').val()
-      alert("Письмо отправлено на #{email}!")
+      alert("Приглашение отправлено на #{email}!")
       Turbolinks.visit('/')
 
     error = (data) ->

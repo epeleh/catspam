@@ -5,18 +5,30 @@
     = form_tag(api_v1_subscriber_url(@current_user), method: 'put', class: 'toolbar') do
       %label Твоя почта:
       %input{type: 'email', name: 'email', value: @current_user.email, disabled: true, spellcheck: 'false', class: 'dynamic-width'}
-      %input{id: 'activation', type: 'checkbox', name: 'active', checked: @current_user.active?}
-      %label{for: 'activation', id: 'subscribe-btn'}= @current_user.active? ? 'Отписаться' : 'Подписаться'
-      %label{for: 'activation', id: 'smile'} :)
+      - unless ENV['DISABLED']&.to_bool
+        %input{id: 'activation', type: 'checkbox', name: 'active', checked: @current_user.active?}
+        %label{for: 'activation', id: 'subscribe-btn'}= @current_user.active? ? 'Отписаться' : 'Подписаться'
+        %label{for: 'activation', id: 'smile'} :)
       %br
       %label Твой ник:
       %input{type: 'text', name: 'name', value: @current_user.name, spellcheck: 'false', class: 'dynamic-width'}
       %input{type: 'submit', value: 'Поменять', title: '#'}
       %br
-      = link_to('--> Позвать друга <--', invite_url)
+      = link_to('--> Позвать друга <--', invite_url) unless ENV['DISABLED']&.to_bool
   - else
     .toolbar
-      = link_to('--> Присоединиться к нам <--', invite_url)
+      = link_to('--> Присоединиться к нам <--', invite_url) unless ENV['DISABLED']&.to_bool
+
+  - if ENV['DISABLED']&.to_bool
+    %p.disable-banner
+      На сайте почти кончились картинки с котиками.
+      %br
+      Мне лень добавлять новые - я отключил рассылку.
+      %br
+      Если вдруг тебе интересно:
+      = succeed "." do
+        = link_to 'github', 'https://github.com/epeleh/catspam'
+      Было весело :)
 
   .blocks
     - unless @solo_posts.empty?

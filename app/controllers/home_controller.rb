@@ -2,7 +2,8 @@
 
 class HomeController < ApplicationController
   def index
-    @reports = Report.all
-    @solo_posts = Post.active.select { |x| x.created_at > (Report.pluck(:created_at).max || 0) }
+    @reports = Report.includes(posts: { image: { file_attachment: :blob } })
+    @solo_posts = Post.includes(image: { file_attachment: :blob }).active
+                      .select { |x| x.created_at > (Report.maximum(:created_at) || 0) }
   end
 end

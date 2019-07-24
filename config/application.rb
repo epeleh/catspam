@@ -40,7 +40,7 @@ module Catspam
     config.generators.system_tests = nil
 
     config.after_initialize do
-      next unless Rails.const_defined?('Server')
+      next if !Rails.const_defined?('Server') || ENV['DISABLED']&.to_bool
       PostsSendJob.set(PostsSendJob.waiting).perform_later
       ReportSendJob.set(ReportSendJob.waiting).perform_later
     end

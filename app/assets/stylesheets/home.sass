@@ -7,7 +7,7 @@ $bar-height: 58px
 $circle-size: 32px
 
 [data-controller='home'][data-action='index'].funny-mode
-  h1:hover, .block:hover, .toolbar *:hover
+  h1:hover, .block:hover, .disable-banner:hover, .toolbar *:hover
     animation: rotation .013s linear infinite
     transform: none !important
     @keyframes rotation
@@ -16,7 +16,7 @@ $circle-size: 32px
 
 
 [data-controller='home'][data-action='index']
-  h1, .circle, a, .toolbar *
+  h1, .circle, .disable-banner, a, .toolbar *
     transition: transform .2s
 
   h1:hover
@@ -25,7 +25,7 @@ $circle-size: 32px
   .circle:hover
     transform: scale(1.12)
 
-  a:hover
+  .disable-banner:hover, a:hover
     transform: scale(1.01)
 
   .toolbar *:hover
@@ -43,9 +43,14 @@ $circle-size: 32px
       color: $main-color
       margin: 24px 24px 2px
 
-    .blocks
-      margin: 18px auto
-      width: 800px
+  .disable-banner
+    margin: 34px
+    color: $main-color
+
+    a
+      color: $main-color
+      font-weight: bold
+      cursor: pointer
 
   .toolbar
     width: 800px
@@ -84,58 +89,62 @@ $circle-size: 32px
     #subscribe-btn::selection
       background: transparent
 
-  .block
-    padding: 2px 0
-    display: inline-block
-    width: 100%
-    margin: 14px auto
-    box-shadow: 0 0 12px $main-color
-    border-radius: 8px
-    text-align: center
-    overflow: hidden
+  .blocks
+    margin: 18px auto
+    width: 800px
 
-    .line
-      display: block
-      margin: 12px auto
-      width: calc(100% - 40px)
-      border-bottom: 1px solid $line-color
+    .block
+      padding: 2px 0
+      display: inline-block
+      width: 100%
+      margin: 14px auto
+      box-shadow: 0 0 12px $main-color
+      border-radius: 8px
+      text-align: center
+      overflow: hidden
 
-    .bar
-      width: calc(100% - 14px * 2)
-      height: $bar-height
-      margin: 14px
+      .line
+        display: block
+        margin: 12px auto
+        width: calc(100% - 40px)
+        border-bottom: 1px solid $line-color
 
-      *
-        display: inline-block
-        margin: 0 8px
-        float: left
+      .bar
+        width: calc(100% - 14px * 2)
+        height: $bar-height
+        margin: 14px
 
-      .circle
-        background-color: $green-color
-        width: $circle-size
-        border: 1px solid $border-color
-        border-radius: 50%
-        margin: 12px 8px
+        *
+          display: inline-block
+          margin: 0 8px
+          float: left
 
-        &:after
-          content: ''
-          display: block
-          padding-top: 100%
+        .circle
+          background-color: $green-color
+          width: $circle-size
+          border: 1px solid $border-color
+          border-radius: 50%
+          margin: 12px 8px
 
-      a
-        background-image: image-url('star_3.png')
-        width: calc(100% - 8px * 4 - 4px - 18px * 2 - #{$circle-size})
-        cursor: pointer
-        border-radius: 8px
-        border: 1px solid $border-color
-        padding: 0 18px
-        color: $main-color
-        text-align: left
-        text-decoration: none
-        font-size: 20px
-        font-weight: bold
-        height: calc(#{$bar-height} - 2px)
-        line-height: calc(#{$bar-height} - 2px)
-        background-repeat: no-repeat
-        background-position: right
-        background-size: contain
+          &:after
+            content: ''
+            display: block
+            padding-top: 100%
+
+        a
+          background-image: image-url('star_3.png')
+          width: calc(100% - 8px * 4 - 4px - 18px * 2 - #{$circle-size})
+          cursor: pointer
+          border-radius: 8px
+          border: 1px solid $border-color
+          padding: 0 18px
+          color: $main-color
+          text-align: left
+          text-decoration: none
+          font-size: 20px
+          font-weight: bold
+          height: calc(#{$bar-height} - 2px)
+          line-height: calc(#{$bar-height} - 2px)
+          background-repeat: no-repeat
+          background-position: right
+          background-size: contain

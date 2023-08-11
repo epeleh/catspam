@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: 'catspam'
+      POSTGRES_PASSWORD: '123'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      RAILS_HOST: ${RAILS_HOST:?} # 'catspam.com'
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE:-'Dqj+yv4GSrsa19CsB2wf1Nt93L6WdOQ10mzTysEssqI='}
+      DISABLED: ${DISABLED:-'false'}
+
+      GMAIL_USERNAME: ${GMAIL_USERNAME:?} # 'catspam42'
+      GMAIL_PASSWORD: ${GMAIL_PASSWORD:?} # '123..'
+
+      POSTGRES_HOST: ${POSTGRES_HOST:-'postgres'}
+      POSTGRES_PORT: ${POSTGRES_PORT:-5432}
+      POSTGRES_USER: ${POSTGRES_USER:-'catspam'}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-'123'}
+      POSTGRES_DB: ${POSTGRES_DB:-'catspam_production'}
+
+    ports:
+      - '80:80'
+    volumes:
+      - app_storage:/app/storage
+
+volumes:
+  postgres_data:
+  app_storage:

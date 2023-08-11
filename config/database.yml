@@ -1,19 +1,20 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: localhost
-  username: catspam
-  password: 123
+  pool:     <%= ENV.fetch('RAILS_MAX_THREADS', 5          ) %>
+  host:     <%= ENV.fetch('POSTGRES_HOST',     'localhost') %>
+  port:     <%= ENV.fetch('POSTGRES_PORT',     5432       ) %>
+  username: <%= ENV.fetch('POSTGRES_USER',     'catspam'  ) %>
+  password: <%= ENV.fetch('POSTGRES_PASSWORD', '123'      ) %>
 
 development:
   <<: *default
-  database: catspam_development
+  database: <%= ENV.fetch('POSTGRES_DB', 'catspam_development') %>
 
 test:
   <<: *default
-  database: catspam_test
+  database: <%= ENV.fetch('POSTGRES_DB', 'catspam_test') %>
 
 production:
   <<: *default
-  database: catspam_production
+  database: <%= ENV.fetch('POSTGRES_DB', 'catspam_production') %>

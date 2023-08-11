@@ -12,11 +12,11 @@ class ReportMailerPreview < ActionMailer::Preview
           image = random_image
           Post.create!(
             message: Message.active.where(darkness: [image&.darkness, nil]).sample,
-            image: image,
+            image:,
             created_at: Date.parse(day)
           )
         end
-        report = Report.create!(posts: posts)
+        report = Report.create!(posts:)
       end
     end
 
@@ -26,10 +26,10 @@ class ReportMailerPreview < ActionMailer::Preview
   private
 
   def random_image
-    Image.find_by_id(Image.active.pluck(:id).sample)
+    Image.find_by(id: Image.active.pluck(:id).sample)
   end
 
   def random_subscriber
-    Subscriber.find_by_id(Subscriber.active.pluck(:id).sample)
+    Subscriber.find_by(id: Subscriber.active.pluck(:id).sample)
   end
 end

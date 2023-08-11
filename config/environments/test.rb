@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ENV['RAILS_HOST'] ||= 'localhost:3000'
-Rails.application.routes.default_url_options[:host] = ENV['RAILS_HOST']
+Rails.application.routes.default_url_options[:host] = ENV.fetch('RAILS_HOST', nil)
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   config.action_controller.forgery_protection_origin_check = false
@@ -13,7 +13,7 @@ Rails.application.configure do
   config.cache_classes = true
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = "http://#{ENV['RAILS_HOST']}"
+  config.action_controller.asset_host = "http://#{ENV.fetch('RAILS_HOST', nil)}"
 
   # Do not eager load code on boot. This avoids loading your whole application
   # just for the purpose of running a single test. If you are using a tool that
@@ -39,7 +39,7 @@ Rails.application.configure do
   # Store uploaded files on the local file system in a temporary directory
   config.active_storage.service = :test
 
-  config.action_mailer.asset_host = "http://#{ENV['RAILS_HOST']}"
+  config.action_mailer.asset_host = "http://#{ENV.fetch('RAILS_HOST', nil)}"
   config.action_mailer.perform_caching = false
 
   # Tell Action Mailer not to deliver emails to the real world.

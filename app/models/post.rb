@@ -16,7 +16,7 @@ class Post < ApplicationRecord
   validate :validate_message
 
   def stars
-    votes.pluck(:value).sum
+    votes.sum(:value)
   end
 
   def weekday
@@ -30,14 +30,14 @@ class Post < ApplicationRecord
   private
 
   def validate_image
-    errors.add(:image, 'already used') if image_id_changed? && Image.inactive.find_by_id(image&.id).present?
+    errors.add(:image, 'already used') if image_id_changed? && Image.inactive.exists?(id: image&.id)
   end
 
   def validate_message
-    errors.add(:message, 'already used') if message_id_changed? && Message.inactive.find_by_id(message&.id).present?
+    errors.add(:message, 'already used') if message_id_changed? && Message.inactive.exists?(id: message&.id)
   end
 
   def send_emails
-    Subscriber.active.each { |s| PostMailer.daily_post(s, self).deliver_later }
+    Subscriber.active.each { |subscriber| PostMailer.daily_post(subscriber, self).deliver_later }
   end
 end

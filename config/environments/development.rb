@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ENV['RAILS_HOST'] ||= 'localhost:3000'
-Rails.application.routes.default_url_options[:host] = ENV['RAILS_HOST']
+Rails.application.routes.default_url_options[:host] = ENV.fetch('RAILS_HOST', nil)
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   config.action_controller.forgery_protection_origin_check = false
@@ -19,7 +19,7 @@ Rails.application.configure do
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp', 'caching-dev.txt').exist?
+  if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
 
     config.cache_store = :memory_store
@@ -33,19 +33,19 @@ Rails.application.configure do
   end
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = "http://#{ENV['RAILS_HOST']}"
+  config.action_controller.asset_host = "http://#{ENV.fetch('RAILS_HOST', nil)}"
 
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = :local
 
-  config.action_mailer.asset_host = "http://#{ENV['RAILS_HOST']}"
+  config.action_mailer.asset_host = "http://#{ENV.fetch('RAILS_HOST', nil)}"
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
     port: 587,
-    user_name: ENV['GMAIL_USERNAME'],
-    password: ENV['GMAIL_PASSWORD'],
+    user_name: ENV.fetch('GMAIL_USERNAME', nil),
+    password: ENV.fetch('GMAIL_PASSWORD', nil),
     authentication: 'plain',
     enable_starttls_auto: true
   }

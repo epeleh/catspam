@@ -8,7 +8,7 @@ class ReportSendJob < ApplicationJob
   def self.waiting
     time = Time.zone.now
 
-    if time.wday == Date.parse('Sunday').wday && Report.find_by_created_today.nil?
+    if time.wday == Date.parse('Sunday').wday && !Report.exists?(created_at: Time.zone.now.all_day)
       return { wait: 30.seconds } if time.hour >= 16
       return { wait_until: time.beginning_of_day + 16.hours }
     end

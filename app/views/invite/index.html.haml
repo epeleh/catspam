@@ -4,7 +4,7 @@
   - if @current_user
     .templates
       - @mail_templates.each_with_index do |template, i|
-        .template{id: "template_#{i}", style: ('display: none;' if i != 1)}= template
+        .template{id: "template_#{i}", style: ('display: none;' if i != 1)}= raw(template)
       .radio-btns
         - (1..4).each do |i|
           = radio_button_tag(:invite_type, i, i == 1)

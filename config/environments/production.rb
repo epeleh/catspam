@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ENV['RAILS_HOST'] ||= 'localhost:3000'
-Rails.application.routes.default_url_options[:host] = ENV['RAILS_HOST']
+Rails.application.routes.default_url_options[:host] = ENV.fetch('RAILS_HOST', nil)
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   config.action_controller.forgery_protection_origin_check = false
@@ -37,7 +37,7 @@ Rails.application.configure do
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = "http://#{ENV['RAILS_HOST']}"
+  config.action_controller.asset_host = "http://#{ENV.fetch('RAILS_HOST', nil)}"
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
@@ -63,14 +63,14 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "catspam_#{Rails.env}"
 
-  config.action_mailer.asset_host = "http://#{ENV['RAILS_HOST']}"
+  config.action_mailer.asset_host = "http://#{ENV.fetch('RAILS_HOST', nil)}"
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
     port: 587,
-    user_name: ENV['GMAIL_USERNAME'],
-    password: ENV['GMAIL_PASSWORD'],
+    user_name: ENV.fetch('GMAIL_USERNAME', nil),
+    password: ENV.fetch('GMAIL_PASSWORD', nil),
     authentication: 'plain',
     enable_starttls_auto: true
   }
@@ -83,14 +83,14 @@ Rails.application.configure do
   config.active_support.deprecation = :notify
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
-  config.log_formatter = ::Logger::Formatter.new
+  config.log_formatter = Logger::Formatter.new
 
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
   if ENV['RAILS_LOG_TO_STDOUT'].present?
-    logger = ActiveSupport::Logger.new(STDOUT)
+    logger = ActiveSupport::Logger.new($stdout)
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end

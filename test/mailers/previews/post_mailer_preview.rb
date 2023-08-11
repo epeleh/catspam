@@ -7,7 +7,7 @@ class PostMailerPreview < ActionMailer::Preview
     post = Post.last
     if post.nil?
       image = random_image
-      post = Post.create!(message: Message.active.where(darkness: [image&.darkness, nil]).sample, image: image)
+      post = Post.create!(message: Message.active.where(darkness: [image&.darkness, nil]).sample, image:)
     end
 
     PostMailer.daily_post(subscriber, post)
@@ -16,10 +16,10 @@ class PostMailerPreview < ActionMailer::Preview
   private
 
   def random_image
-    Image.find_by_id(Image.active.pluck(:id).sample)
+    Image.find_by(id: Image.active.pluck(:id).sample)
   end
 
   def random_subscriber
-    Subscriber.find_by_id(Subscriber.active.pluck(:id).sample)
+    Subscriber.find_by(id: Subscriber.active.pluck(:id).sample)
   end
 end

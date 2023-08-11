@@ -11,10 +11,10 @@ class PostsSendJob < ApplicationJob
     return skip_days(2) if time.wday == Date.parse('Saturday').wday
     return skip_days(1) if time.wday == Date.parse('Sunday').wday
 
-    if Post.find_by_created_today.nil?
+    unless Post.exists?(created_at: Time.zone.now.all_day)
       return skip_days(0) if time.hour < 4
       return { wait: 30.seconds } if time.hour >= 14
-      return { wait_until: time.beginning_of_day + 4.hours + rand(((time.hour - 4) * 60 + time.min)...600).minutes }
+      return { wait_until: time.beginning_of_day + 4.hours + rand((((time.hour - 4) * 60) + time.min)...600).minutes }
     end
 
     return skip_days(3) if time.wday == Date.parse('Friday').wday
@@ -26,7 +26,7 @@ class PostsSendJob < ApplicationJob
   def perform
     darkness = current_darkness
     Post.create(
-      image: Image.active.where(darkness: darkness).sample,
+      image: Image.active.where(darkness:).sample,
       message: Message.active.where(darkness: [darkness, nil]).sample
     )
   end

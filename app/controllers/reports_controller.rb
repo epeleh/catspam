@@ -2,8 +2,9 @@
 
 class ReportsController < ApplicationController
   def show
-    @report = Report.includes(posts: [:message, votes: :subscriber, image: { file_attachment: :blob }])
-                    .find_by_id(params[:id])
+    @report = Report.includes(
+      posts: [:message, { votes: :subscriber, image: { file_attachment: :blob } }]
+    ).find_by(id: params[:id])
 
     redirect_to root_url if @report.nil?
   end

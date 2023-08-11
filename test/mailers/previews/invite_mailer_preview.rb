@@ -13,6 +13,6 @@ class InviteMailerPreview < ActionMailer::Preview
   private
 
   def random_subscriber
-    Subscriber.find_by_id(Subscriber.active.pluck(:id).sample)
+    Subscriber.find_by(id: Subscriber.active.pluck(:id).sample)
   end
 end

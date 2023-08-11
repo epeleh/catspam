@@ -6,17 +6,15 @@ class Image < ApplicationRecord
   has_one_attached :file
   has_one :post, dependent: :destroy
 
-  scope :active, -> { where.not(id: Post.pluck(:image_id)) }
-  scope :inactive, -> { where(id: Post.pluck(:image_id)) }
+  scope :active, -> { where.not(id: Post.select(:image_id)) }
+  scope :inactive, -> { where(id: Post.select(:image_id)) }
 
   before_save :set_filename
 
   validates :file, attached: true, content_type: %w[image/png image/jpg image/jpeg].freeze
   validates :darkness, presence: true, inclusion: { in: 1..5 }
 
-  def filename
-    file.filename
-  end
+  delegate :filename, to: :file
 
   def url
     url_for(file) if file.attached?

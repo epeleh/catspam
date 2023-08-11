@@ -1,21 +1,15 @@
+require: rubocop-rails
+
 AllCops:
+  NewCops: enable
   Exclude:
     - 'db/schema.rb'
     - 'bin/*'
 
-Metrics/AbcSize:
-  Max: 40
+Layout/LineLength:
+  Max: 120
 
 Layout/EmptyLineAfterGuardClause:
-  Enabled: false
-
-Metrics/BlockLength:
-  Max: 60
-
-Metrics/MethodLength:
-  Max: 40
-
-Style/ClassAndModuleChildren:
   Enabled: false
 
 Style/Documentation:
@@ -24,11 +18,28 @@ Style/Documentation:
 Style/MultilineBlockChain:
   Enabled: false
 
-Metrics/LineLength:
-  Max: 120
+Metrics/AbcSize:
+  Max: 40
 
 Metrics/CyclomaticComplexity:
   Max: 10
 
 Metrics/PerceivedComplexity:
   Max: 20
+
+Metrics/BlockLength:
+  Max: 60
+
+Metrics/MethodLength:
+  Max: 40
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+Rails/Output:
+  Exclude:
+    - 'db/seeds.rb'
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'db/migrate/20230811063012_add_service_name_to_active_storage_blobs.active_storage.rb'

@@ -11,7 +11,7 @@
             %label{title: "Всего #{post.stars}★"}= post.stars
             %h2= translate_day(post.weekday)
           %ul
-            - post.votes.sort_by(&:value).reverse!.each do |vote|
+            - post.votes.sort_by(&:value).reverse_each do |vote|
               %li
                 %label{title: "Поствил(а) #{vote.value}★"}= vote.value
                 %p{title: vote.subscriber.email}= vote.subscriber.name

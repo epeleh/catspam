@@ -33,18 +33,18 @@
   .blocks
     - unless @solo_posts.empty?
       .block
-        - @solo_posts.sort_by(&:created_at).reverse!.each do |post|
+        - @solo_posts.sort_by(&:created_at).reverse_each do |post|
           .bar
             %label.circle{style: "background-color: #{darkness_to_color(post.image.darkness)};"}
             = link_to(translate_time(post.created_at), post, style: "background-image: url(#{post.image.url})")
 
-    - @reports.sort_by(&:created_at).reverse!.each do |report|
+    - @reports.sort_by(&:created_at).reverse_each do |report|
       .block
         .bar
           %label.circle
           = link_to(translate_time(report.created_at), report)
         .line
-        - report.posts.sort_by(&:created_at).reverse!.each do |post|
+        - report.posts.sort_by(&:created_at).reverse_each do |post|
           .bar
             %label.circle{style: "background-color: #{darkness_to_color(post.image.darkness)};"}
             = link_to(translate_time(post.created_at), post, style: "background-image: url(#{post.image.url})")
